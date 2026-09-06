@@ -1,0 +1,124 @@
+.create-program-div {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+
+    padding: 25px 15px;
+    background: var(--bg);
+}
+
+/* ---------- Form Card ---------- */
+
+.create-program-form {
+    width: 100%;
+    max-width: 420px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    padding: 28px;
+    box-sizing: border-box;
+
+    background: var(--card);
+    border-radius: 18px;
+    color: white;
+
+    box-shadow:
+        0 0 5px rgba(255,255,255,.45),
+        0 0 10px rgba(255,255,255,.2);
+}
+
+/* ---------- Input Container ---------- */
+
+.new-program-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.new-program-inputs h2 {
+    margin: 10px 0 0;
+
+    font-size: .9rem;
+    font-weight: 600;
+    color: #d1d5db;
+}
+
+/* ---------- Inputs / Selects ---------- */
+
+.new-program-inputs input,
+.new-program-inputs select {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.12);
+
+    background: rgba(255,255,255,.03);
+    color: white;
+
+    font-size: .95rem;
+    font-family: inherit;
+
+    transition: .2s;
+}
+
+.new-program-inputs input::placeholder {
+    color: #6b7280;
+}
+
+.new-program-inputs input:focus,
+.new-program-inputs select:focus {
+    outline: none;
+
+    border-color: #6366f1;
+    background: rgba(255,255,255,.05);
+}
+
+/* Select dropdown options */
+
+.new-program-inputs select {
+    cursor: pointer;
+}
+
+.new-program-inputs select option {
+    background: #18181b;
+    color: white;
+}
+
+/* ---------- Create Button ---------- */
+
+.create-program-form button {
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #6366f1;
+    color: white;
+
+    font-size: .95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.create-program-form button:hover {
+    background: #4f46e5;
+    transform: translateY(-1px);
+}
+
+.create-program-form button:active {
+    transform: translateY(0);
+}
+
+.create-program-form h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}

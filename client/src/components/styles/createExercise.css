@@ -1,0 +1,255 @@
+/* ==================================================
+   EXERCISE SEARCH
+================================================== */
+
+.exercise-input-div {
+    width: calc(100% - 30px);
+    max-width: 600px;
+
+    margin: 35px auto 25px;
+    padding: 28px;
+
+    box-sizing: border-box;
+
+    background: var(--card);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 5px rgba(255, 255, 255, .18),
+        0 0 12px rgba(255, 255, 255, .06);
+
+    color: white;
+}
+
+/* Search title */
+
+.exercise-input-div h1 {
+    margin: 0 0 24px;
+
+    text-align: center;
+
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
+/* Search input */
+
+.exercise-input-div input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 13px 15px;
+    margin-bottom: 12px;
+
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, .12);
+
+    background: rgba(255, 255, 255, .03);
+    color: white;
+
+    font-size: .95rem;
+
+    transition: .2s;
+}
+
+.exercise-input-div input::placeholder {
+    color: #6b7280;
+}
+
+.exercise-input-div input:focus {
+    outline: none;
+
+    border-color: #6366f1;
+    background: rgba(255, 255, 255, .05);
+
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, .12);
+}
+
+/* Search button */
+
+.exercise-input-div button {
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #6366f1;
+    color: white;
+
+    font-size: .95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.exercise-input-div button:hover {
+    background: #4f46e5;
+    transform: translateY(-1px);
+}
+
+.exercise-input-div button:active {
+    transform: translateY(0);
+}
+
+
+/* ==================================================
+   SEARCH RESULTS
+================================================== */
+
+.searched-exercise-div {
+    width: calc(100% - 30px);
+    max-width: 900px;
+
+    margin: 0 auto;
+    padding: 10px 0 40px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+
+/* ==================================================
+   EXERCISE RESULT CARD
+================================================== */
+
+.exercise-result-card {
+    width: 100%;
+    padding: 24px;
+
+    box-sizing: border-box;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 5px rgba(255, 255, 255, .12),
+        0 0 10px rgba(255, 255, 255, .05);
+
+    color: white;
+}
+
+
+/* Exercise name */
+
+.exercise-result-card h2 {
+    margin: 0 0 8px;
+
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+}
+
+
+/* Primary muscles */
+
+.exercise-result-card h3 {
+    margin: 0 0 6px;
+
+    font-size: .9rem;
+    font-weight: 600;
+
+    color: #a5b4fc;
+}
+
+
+/* Equipment + overview */
+
+.exercise-result-card p {
+    margin: 5px 0;
+
+    color: #9ca3af;
+
+    font-size: .9rem;
+    line-height: 1.5;
+}
+
+
+/* ==================================================
+   EXERCISE VIDEO
+================================================== */
+
+.exercise-result-card video {
+    display: block;
+
+    width: 100%;
+    max-height: 380px;
+
+    margin-top: 18px;
+
+    border-radius: 12px;
+
+    object-fit: cover;
+
+    background: #09090b;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+}
+
+
+/* ==================================================
+   ADD EXERCISE BUTTON
+================================================== */
+
+.exercise-result-card button {
+    width: 100%;
+
+    margin-top: 18px;
+    padding: 13px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #6366f1;
+    color: white;
+
+    font-size: .9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.exercise-result-card button:hover {
+    background: #4f46e5;
+    transform: translateY(-1px);
+}
+
+.exercise-result-card button:active {
+    transform: translateY(0);
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 600px) {
+
+    .exercise-input-div {
+        margin-top: 20px;
+        padding: 22px 18px;
+    }
+
+    .exercise-input-div h1 {
+        font-size: 1.5rem;
+    }
+
+    .exercise-result-card {
+        padding: 18px;
+    }
+
+    .exercise-result-card video {
+        max-height: 300px;
+    }
+}

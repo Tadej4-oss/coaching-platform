@@ -1,0 +1,15 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+    --bg: #0f172a;         /* Page */
+    --sidebar:#0a1e44;    /* Sidebar */
+    --card: #081833;       /* Cards */
+    --border: #334155;     /* Borders */
+    --text: #f8fafc;       /* Main text */
+    --muted: #94a3b8;      /* Secondary text */
+    --accent: #3b83f68f;     /* Buttons/links */
+    --hover: #1f2937;      /* Hover states */
+}

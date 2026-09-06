@@ -1,0 +1,215 @@
+/* ==================================================
+   PROGRAMS LIST
+================================================== */
+
+.programs-div {
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.programs-div > label {
+    cursor: pointer;
+}
+
+
+/* ==================================================
+   PROGRAM CARD
+================================================== */
+
+.programs-card {
+    padding: 18px;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 14px;
+
+    color: white;
+
+    transition: .2s;
+}
+
+.programs-card:hover {
+    border-color: rgba(99, 102, 241, .5);
+
+    transform: translateY(-2px);
+}
+
+
+/* Program Name */
+
+.programs-card h2 {
+    margin: 0 0 8px;
+
+    font-size: 1.15rem;
+    font-weight: 700;
+
+    color: white;
+}
+
+
+/* Description */
+
+.programs-card > p:nth-of-type(1) {
+    margin: 0 0 14px;
+
+    color: #9ca3af;
+
+    font-size: .85rem;
+    line-height: 1.45;
+}
+
+
+/* Goal */
+
+.programs-card h3 {
+    display: inline-block;
+
+    margin: 0 0 12px;
+    padding: 5px 9px;
+
+    background: rgba(99, 102, 241, .12);
+
+    border: 1px solid rgba(99, 102, 241, .2);
+    border-radius: 7px;
+
+    color: #c7d2fe;
+
+    font-size: .75rem;
+    font-weight: 600;
+
+    text-transform: capitalize;
+}
+
+
+/* Duration + Difficulty */
+
+.programs-card > p:nth-of-type(2),
+.programs-card > p:nth-of-type(3) {
+    margin: 4px 0;
+
+    color: #d1d5db;
+
+    font-size: .8rem;
+}
+
+
+/* Add labels without changing TSX */
+
+.programs-card > p:nth-of-type(2)::before {
+    content: "Duration: ";
+    color: #6b7280;
+}
+
+.programs-card > p:nth-of-type(2)::after {
+    content: " weeks";
+}
+
+.programs-card > p:nth-of-type(3)::before {
+    content: "Difficulty: ";
+    color: #6b7280;
+}
+
+
+/* ==================================================
+   PROGRAM WEEKS DROPDOWN
+================================================== */
+
+.program-weeks-dropdown {
+    position: fixed;
+
+    height: 100vh;
+    width: 100%;
+
+    top: -100%;
+    right: 0;
+
+    padding: 20px 15px;
+    box-sizing: border-box;
+
+    background-color: var(--bg);
+
+    overflow-y: auto;
+
+    z-index: 1000;
+
+    transition: .5s ease;
+}
+
+#program-dropdown:checked ~ .program-weeks-dropdown {
+    top: 0;
+}
+
+
+/* ==================================================
+   BACK BUTTON
+================================================== */
+
+.back-arrow {
+    width: 42px;
+    height: 42px;
+
+    margin: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.back-arrow h1 {
+    margin: 0;
+
+    color: white;
+
+    font-size: 1.2rem;
+}
+
+.back-arrow:hover {
+    background: rgba(255, 255, 255, .06);
+}
+
+
+/* ==================================================
+   WEEK CARD
+================================================== */
+
+.week-card {
+    margin-bottom: 12px;
+    padding: 18px;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.week-card h2 {
+    margin: 0;
+
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.week-card:hover {
+    border-color: rgba(99, 102, 241, .5);
+
+    transform: translateX(3px);
+}

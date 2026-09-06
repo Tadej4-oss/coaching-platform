@@ -1,0 +1,142 @@
+.profile-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+    background: var(--bg);
+}
+
+.profile-card {
+    width: 100%;
+    max-width: 650px;
+    background: var(--card);
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow:
+        0 0 5px rgba(255,255,255,.5),
+        0 0 10px rgba(255,255,255,.2);
+}
+
+/* Header */
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 35px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    padding-bottom: 25px;
+}
+
+.profile-photo {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #6366f1;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.profile-role {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: #6366f1;
+    color: white;
+    font-size: .8rem;
+}
+
+/* Information */
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-row span {
+    font-size: .85rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-row p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Bio */
+
+.bio-row textarea {
+    min-height: 110px;
+    resize: vertical;
+    border: 1px solid rgba(255,255,255,.1);
+    background: rgba(255,255,255,.03);
+    color: white;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: .95rem;
+    outline: none;
+}
+
+.bio-row textarea:focus {
+    border-color: #6366f1;
+}
+
+.bio-row button {
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+
+
+.spec-row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.spec-row span {
+    font-size: .85rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.spec-row p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.spec-row button{
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: .2s;
+  width: 30%;
+}
+
+

@@ -1,0 +1,38 @@
+/* Error message */
+
+.auth-form p {
+    min-height: 20px;
+    padding: 10px 12px;
+
+    border-radius: 8px;
+    border: 1px solid rgba(239, 68, 68, 0.35);
+
+    background: rgba(239, 68, 68, 0.1);
+    color: #fca5a5;
+
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* Hide the error box when there is no error */
+
+.auth-form p:empty {
+    display: none;
+}
+
+/* Success / status message */
+
+.auth-form h3 {
+    min-height: 20px;
+
+    color: #86efac;
+    text-align: center;
+
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.auth-form h3:empty {
+    display: none;
+}

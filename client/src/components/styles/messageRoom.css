@@ -1,0 +1,669 @@
+/* ==================================================
+   coach css
+================================================== */
+
+.sidemenu-chat-div {
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+
+    top: 0;
+    right: -100%;
+
+    height: 100vh;
+    width: 100%;
+
+    background-color: var(--bg);
+
+    transition: .5s;
+
+    z-index: 1000;
+}
+
+#chat-sidemenu:checked ~ .sidemenu-chat-div {
+    right: 0;
+}
+
+
+/* ==================================================
+   coach - client profile card
+================================================== */
+
+.client-profile-card {
+    width: calc(100% - 30px);
+    max-width: 500px;
+
+    margin: 30px auto;
+    padding: 24px 20px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 5px rgba(255, 255, 255, .10),
+        0 0 12px rgba(255, 255, 255, .04);
+
+    color: white;
+}
+
+
+/* ---------- Profile Image ---------- */
+
+.client-profile-img {
+    width: 95px;
+    height: 95px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    background: rgba(255, 255, 255, .05);
+
+    border: 2px solid rgba(99, 102, 241, .5);
+
+    margin-bottom: 16px;
+}
+
+
+/* ---------- Client Info ---------- */
+
+.client-profile-info {
+    width: 100%;
+
+    text-align: center;
+}
+
+.client-profile-name {
+    margin: 0 0 5px;
+
+    font-size: 1.45rem;
+    font-weight: 700;
+
+    color: white;
+}
+
+.client-profile-email {
+    margin: 0 0 18px;
+
+    color: #9ca3af;
+
+    font-size: .85rem;
+}
+
+.client-profile-bio {
+    margin: 0;
+
+    padding: 14px;
+
+    background: rgba(255, 255, 255, .025);
+
+    border: 1px solid rgba(255, 255, 255, .06);
+    border-radius: 12px;
+
+    color: #d1d5db;
+
+    font-size: .9rem;
+    line-height: 1.5;
+
+    text-align: left;
+}
+
+
+/* ---------- Actions ---------- */
+
+.client-profile-actions {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+
+/* Message Client */
+
+.message-client-btn {
+    width: 100%;
+
+    padding: 13px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+
+    background: #6366f1;
+    color: white;
+
+    font-size: .9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.message-client-btn:hover {
+    background: #4f46e5;
+    transform: translateY(-1px);
+}
+
+.message-client-btn:active {
+    transform: translateY(0);
+}
+
+
+/* Edit Programs */
+
+.edit-programs-btn {
+    text-align: center;
+    width: 100%;
+
+    padding: 13px;
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+
+    border: 1px solid rgba(255, 255, 255, .1);
+
+    background: rgba(255, 255, 255, .03);
+    color: #d1d5db;
+
+    font-size: .9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.edit-programs-btn:hover {
+    background: rgba(255, 255, 255, .07);
+
+    border-color: rgba(255, 255, 255, .16);
+
+    color: white;
+}
+
+.edit-programs-btn:active {
+    transform: scale(.99);
+}
+
+
+/* ==================================================
+   CHAT CONTAINER
+================================================== */
+
+.chat-div,
+.sidemenu-chat-div {
+    width: 100%;
+    height: 100vh;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    background: var(--bg);
+    color: white;
+}
+
+
+/* ==================================================
+   COACH SIDE MENU CHAT
+================================================== */
+.add-programs-div {
+    position: fixed;
+
+    top: 0;
+    right: -100%;
+
+    width: 100%;
+    height: 100vh;
+
+    box-sizing: border-box;
+
+    padding: 20px 15px 40px;
+
+    background: var(--bg);
+    color: white;
+
+    overflow-y: auto;
+
+    z-index: 1100;
+
+    transition: right .35s ease;
+}
+
+.add-programs-header {
+    width: 100%;
+    max-width: 500px;
+
+    margin: 0 auto 20px;
+
+    position: relative;
+
+    min-height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-programs-header h2 {
+    margin: 0;
+
+    font-size: 1.4rem;
+    font-weight: 700;
+
+    color: white;
+}
+
+.indiv-program-div {
+    width: 100%;
+
+    padding: 18px;
+
+    box-sizing: border-box;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px;
+
+    box-shadow:
+        0 0 5px rgba(255,255,255,.06),
+        0 0 10px rgba(255,255,255,.02);
+}
+
+.indiv-program-div h3 {
+    margin: 0 0 8px;
+
+    color: white;
+
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.add-programs-list {
+    width: 100%;
+    max-width: 500px;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.assign-program-btn {
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #6366f1;
+    color: white;
+
+    font-size: .9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.edit-program-btn {
+    width: 100%;
+
+    margin-top: 9px;
+    padding: 11px;
+
+    border-radius: 10px;
+
+    border: 1px solid rgba(255,255,255,.1);
+
+    background: rgba(255,255,255,.03);
+    color: #d1d5db;
+
+    font-size: .88rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.sidemenu-chat-div {
+    position: fixed;
+
+    top: 0;
+    right: -100%;
+
+    z-index: 1000;
+
+    transition: .35s ease;
+}
+
+#chat-sidemenu:checked ~ .sidemenu-chat-div {
+    right: 0;
+}
+
+/* ==================================================
+   COACH add program MENU 
+================================================== */
+
+.add-programs-div {
+    position: fixed;
+
+    top: 0;
+    right: -100%;
+
+    z-index: 1000;
+
+    transition: .35s ease;
+}
+
+#add-program-sidemenu:checked ~ .add-programs-div {
+    right: 0;
+}
+
+
+/* ==================================================
+   CHAT TOP BAR
+================================================== */
+
+.chat-topbar {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 68px;
+
+    padding: 12px 16px;
+
+    box-sizing: border-box;
+
+    background: var(--card);
+
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.chat-title {
+    margin: 0;
+
+    text-align: center;
+
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    color: white;
+}
+
+.chat-div > .chat-title {
+    padding: 22px 15px 8px;
+}
+
+
+/* ==================================================
+   BACK BUTTON
+================================================== */
+
+.chat-back-btn {
+    position: absolute;
+
+    left: 16px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, .04);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    color: #d1d5db;
+
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.chat-back-btn:hover {
+    background: rgba(255, 255, 255, .08);
+    color: white;
+}
+
+
+/* ==================================================
+   ROOM ID
+================================================== */
+
+.chat-room-id {
+    margin: 0;
+
+    padding: 8px 15px 10px;
+
+    text-align: center;
+
+    color: #6b7280;
+
+    font-size: .72rem;
+}
+
+
+/* ==================================================
+   MESSAGES AREA
+================================================== */
+
+.chat-messages {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    padding: 16px 15px 20px;
+
+    box-sizing: border-box;
+
+    overflow-y: auto;
+}
+
+
+/* ==================================================
+   MESSAGE
+================================================== */
+
+.sender,
+.reciever {
+    width: fit-content;
+    max-width: 78%;
+
+    padding: 10px 13px;
+
+    border-radius: 14px;
+
+    box-sizing: border-box;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* Your messages */
+
+.sender {
+    align-self: flex-end;
+
+    background: #6366f1;
+
+    border-bottom-right-radius: 4px;
+
+    box-shadow:
+        0 2px 8px rgba(99, 102, 241, .15);
+}
+
+
+/* Other person's messages */
+
+.reciever {
+    align-self: flex-start;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    border-bottom-left-radius: 4px;
+}
+
+
+/* Sender email/name */
+
+.chat-message-sender {
+    margin: 0 0 4px;
+
+    color: #a5b4fc;
+
+    font-size: .7rem;
+    font-weight: 600;
+}
+
+.sender .chat-message-sender {
+    color: #c7d2fe;
+}
+
+
+/* Message text */
+
+.chat-message-content {
+    margin: 0;
+
+    color: #f9fafb;
+
+    font-size: .9rem;
+    line-height: 1.45;
+
+    word-break: break-word;
+}
+
+
+/* ==================================================
+   INPUT AREA
+================================================== */
+
+.chat-input-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 15px;
+
+    box-sizing: border-box;
+
+    background: var(--card);
+
+    border-top: 1px solid rgba(255, 255, 255, .08);
+}
+
+
+/* ==================================================
+   MESSAGE INPUT
+================================================== */
+
+.chat-input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 12px 14px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(255, 255, 255, .1);
+
+    background: rgba(255, 255, 255, .03);
+    color: white;
+
+    font-size: .9rem;
+
+    transition: .2s;
+}
+
+.chat-input::placeholder {
+    color: #6b7280;
+}
+
+.chat-input:focus {
+    outline: none;
+
+    border-color: #6366f1;
+
+    background: rgba(255, 255, 255, .05);
+
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, .1);
+}
+
+
+/* ==================================================
+   SEND BUTTON
+================================================== */
+
+.chat-send-btn {
+    flex-shrink: 0;
+
+    padding: 12px 16px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #6366f1;
+    color: white;
+
+    font-size: .88rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.chat-send-btn:hover {
+    background: #4f46e5;
+}
+
+.chat-send-btn:active {
+    transform: scale(.97);
+}
+
+
+/* ==================================================
+   client css
+================================================== */

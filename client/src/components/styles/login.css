@@ -1,0 +1,157 @@
+/* Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: #f8fafc;
+    font-family: Inter, system-ui, sans-serif;
+}
+
+/* Background */
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background:
+        radial-gradient(circle at top, #1e293b 0%, #0f172a 60%);
+}
+
+/* Card */
+
+.auth-form {
+    width: 100%;
+    max-width: 420px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    padding: 40px;
+
+    background: rgba(30, 41, 59, 0.85);
+    backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.45);
+}
+
+/* Title */
+
+.auth-form h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+/* Labels */
+
+.auth-form label {
+    font-size: .95rem;
+    color: #cbd5e1;
+    font-weight: 500;
+}
+
+/* Inputs */
+
+.auth-form input {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border-radius: 10px;
+    border: 1px solid #334155;
+
+    background: #1e293b;
+    color: white;
+
+    font-size: 1rem;
+
+    outline: none;
+
+    transition: .25s;
+}
+
+.auth-form input::placeholder {
+    color: #64748b;
+}
+
+.auth-form input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,.25);
+}
+
+/* Buttons */
+
+.auth-form button {
+    padding: 14px;
+
+    border: none;
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    transition: .25s;
+}
+
+/* Login */
+
+.auth-form button:first-of-type {
+    margin-top: 8px;
+    background: #2563eb;
+    color: white;
+}
+
+.auth-form button:first-of-type:hover {
+    background: #1d4ed8;
+}
+
+/* Register */
+
+.auth-form button:last-of-type {
+    background: transparent;
+    color: #94a3b8;
+    border: 1px solid #334155;
+}
+
+.auth-form button:last-of-type:hover {
+    background: #1e293b;
+    color: white;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .auth-container {
+        padding: 18px;
+    }
+
+    .auth-form {
+        padding: 28px 22px;
+        border-radius: 14px;
+    }
+
+    .auth-form h1 {
+        font-size: 1.75rem;
+    }
+
+    .auth-form input,
+    .auth-form button {
+        font-size: 16px; /* Prevents iOS zoom */
+    }
+}

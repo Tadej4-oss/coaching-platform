@@ -1,0 +1,470 @@
+/* =========================
+   DASHBOARD
+   ========================= */
+
+.coach-headers-div {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    margin: 10px 8px;
+    min-height: 64px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0.025);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+
+    overflow: hidden;
+}
+
+.coach-headers-div p {
+    margin: 0 12px;
+    min-height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 1rem;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.coach-headers-div p:hover {
+    opacity: 0.7;
+}
+
+
+/* =========================
+   WELCOME SECTION
+   not a card
+   ========================= */
+
+.welcome-div {
+    margin: 10px 5px;
+
+    min-height: 200px;
+    max-height: 200px;
+
+    padding: 22px 18px;
+}
+
+.welcome-div p {
+    margin: 11px 0;
+
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+.welcome-div p:first-child {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+
+/* =========================
+   RECENT ACTIVITY CARD
+   ========================= */
+
+.recent-activity-div {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+
+    margin: 10px 14px;
+
+    min-height: 170px;
+    max-height: 170px;
+
+    padding: 20px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+.recent-activity-div p {
+    margin: 10px 0;
+
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.recent-activity-div p:first-child {
+    font-size: 1.08rem;
+    font-weight: 600;
+
+    margin-bottom: 14px;
+
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+/* =========================
+   CLIENT SECTION
+   ========================= */
+
+.your-clients-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 22px 18px 8px 18px;
+
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.your-clients-header p {
+    margin: 0;
+}
+
+.your-clients-header p:last-child {
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    opacity: 0.65;
+
+    cursor: pointer;
+}
+
+
+/* client scrolling area itself is NOT a card */
+
+.your-clients-div {
+    min-height: 175px;
+
+    margin: 10px 5px;
+    padding: 5px 12px 12px 12px;
+
+    display: flex;
+    flex-direction: row;
+
+    gap: 10px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scroll-snap-type: x proximity;
+
+    scrollbar-width: thin;
+    scrollbar-color:
+        rgba(255, 255, 255, 0.25)
+        transparent;
+}
+
+.your-clients-div::-webkit-scrollbar {
+    height: 5px;
+}
+
+.your-clients-div::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.your-clients-div::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 20px;
+}
+
+
+/* =========================
+   CLIENT CARD
+   ========================= */
+
+.scroll-clients-div {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+
+    min-height: 150px;
+    max-height: 150px;
+
+    min-width: 150px;
+    max-width: 150px;
+
+    padding: 12px;
+
+    box-sizing: border-box;
+
+    flex-shrink: 0;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.12);
+
+    cursor: pointer;
+
+    scroll-snap-align: start;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.scroll-clients-div:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(255, 255, 255, 0.23);
+
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.scroll-clients-div p {
+    margin: 3px 0;
+}
+
+
+/* Client name */
+
+.client-profile-card-username {
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* Client profile image */
+
+.client-profile-card-pfp {
+    height: 42px;
+    width: 42px;
+
+    margin: 6px 0;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+
+/* Important:
+   prevents email from breaking outside the card */
+
+.client-profile-card-email {
+    font-size: 0.8rem;
+
+    opacity: 0.72;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    width: 100%;
+}
+
+
+/* Client bio */
+
+.client-profile-card-bio {
+    font-size: 0.82rem;
+
+    opacity: 0.7;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    width: 100%;
+}
+
+
+/* =========================
+   QUICK ACTIONS CARD
+   ========================= */
+
+.quick-action-div {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+
+    margin: 10px 8px;
+
+    min-height: 170px;
+
+    padding: 18px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+.quick-action-div p {
+    margin: 10px 0;
+    padding: 10px 9px;
+
+    border-radius: 8px;
+    border: 1px solid rgb(0, 0, 0);
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    background-color: rgba(18, 27, 70, 0.562);
+
+}
+
+
+
+
+/* =========================
+   PROFILE SIDE MENU
+   ========================= */
+
+.profile-sidemenu-div {
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+
+    position: fixed;
+
+    top: 0;
+    right: -100%;
+
+    z-index: 10;
+
+    padding: 18px;
+
+    height: 100%;
+    width: 90%;
+
+    box-sizing: border-box;
+
+    background-color: var(--sidebar);
+
+    box-shadow: -12px 0 35px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    flex-direction: column;
+
+    transition: right 0.4s ease;
+}
+
+#profile-sidemenu:checked ~ .profile-sidemenu-div {
+    right: 0;
+}
+
+
+/* dark overlay behind side menu */
+
+#profile-sidemenu-overlay {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9;
+
+    height: 100%;
+    width: 100%;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    backdrop-filter: blur(2px);
+}
+
+#profile-sidemenu:checked ~ #profile-sidemenu-overlay {
+    display: block;
+}
+
+
+/* side menu close button */
+
+.profile-sidemenu-div > label {
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.profile-sidemenu-div > label h1 {
+    margin: 0;
+
+    height: 40px;
+    width: 40px;
+
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.3rem;
+    font-weight: 400;
+
+    transition: background 0.2s ease;
+}
+
+.profile-sidemenu-div > label h1:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+
+.sidemenu-profile-name {
+    margin: 15px 10px 8px 10px;
+
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.profile-sidemenu-hr {
+    width: 95%;
+
+    border: none;
+    height: 1px;
+
+    margin: 10px auto 22px auto;
+
+    background: rgba(255, 255, 255, 0.12);
+}
+
+
+.menu-items {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.35rem;
+}
+
+.menu-items p {
+    margin: 0;
+
+    padding: 0.85rem 1rem;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 1rem;
+    font-weight: 500;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+.menu-items p:hover {
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateX(4px);
+}
+
+
+/* Logout */
+
+.logout {
+    margin-top: 0.5rem !important;
+
+    color: #ff7676;
+}
+
+.logout:hover {
+    background: rgba(255, 90, 90, 0.1) !important;
+}
