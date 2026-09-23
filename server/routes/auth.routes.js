@@ -20,6 +20,13 @@ const schema = z.object({
         .regex(/[^\w\s]/, "Passowrd must contain a special character")
 })
 
+const cookieOptions = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    path: "/"
+}
+
 function createTokens(user){
     //create accesstoken
     const accessToken = jwt.sign({
@@ -212,7 +219,7 @@ router.post("/login", async (req,res) => {
         res.cookie("refreshToken", tokens.refreshToken, {
             httpOnly: true, 
             secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
             maxAge: 7 * 24 * 60 * 60 * 1000,
             path: "/" 
         })
@@ -221,8 +228,8 @@ router.post("/login", async (req,res) => {
         res.cookie("accessToken", tokens.accessToken, {
             httpOnly: true, // JavaScript in the browser cannot access the cookie (helps protect against token theft via XSS)
             secure: process.env.NODE_ENV === "production", // Only send cookie over HTTPS in production
-            sameSite: "lax",  // Don't send cookie with requests coming from other websites (helps prevent CSRF)
-            maxAge: 15 * 60 * 1000, // Cookie expires after 7 days (value is in milliseconds)
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",  // Don't send cookie with requests coming from other websites (helps prevent CSRF)
+            maxAge: 15 * 60 * 1000, // Cookie expires after 15 min (value is in milliseconds)
             path: "/" // Cookie is available for every route on your website
         })
 
@@ -269,8 +276,8 @@ router.post("/logout", async (req, res) => {
     }
 
     //3.0 zbrisi se iz payloada
-    res.clearCookie("accessToken")
-    res.clearCookie("refreshToken")
+    res.clearCookie("accessToken", cookieOptions)
+    res.clearCookie("refreshToken", cookieOptions)
 
     res.status(201).json({
         success: true,
