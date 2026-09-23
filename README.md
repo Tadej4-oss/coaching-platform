@@ -97,27 +97,29 @@ Architecture
 
   The application consists of three main layers:
 
-      React + TypeScript
-             |
-             | HTTP / REST API
-             v
-      Node.js + Express
-             |
-             | SQL
-             v
-         PostgreSQL
+   React + TypeScript
+          |
+          | HTTP / REST API
+          v
+   Node.js + Express
+          |
+          | SQL
+          v
+      PostgreSQL
 
-    The frontend communicates with the Express REST API. The backend handles authentication, authorization,     application logic and database access.
+  The frontend communicates with the Express REST API. The backend handles authentication, authorization,     application logic and database access.
 
-    PostgreSQL stores users, coach/client relationships, programs, exercises, conversations, messages, refresh    tokens and verification tokens.
+  PostgreSQL stores users, coach/client relationships, programs, exercises, conversations, messages, refresh    tokens and verification tokens.
 
-  Authentication
+Authentication
 
-    Authentication uses short-lived access tokens together with longer-lived refresh tokens.
+  Authentication uses short-lived access tokens together with longer-lived refresh tokens.
 
-    Tokens are delivered using HTTP-only cookies so they cannot be accessed directly through frontend   JavaScript.
+  Authentication uses short-lived access tokens together with longer-lived refresh tokens.
 
-    When an access token expires, the frontend can request a new access token using the refresh token without     requiring the user to log in again.
+  Tokens are delivered using HTTP-only cookies so they cannot be accessed directly through frontend   JavaScript.
+
+  When an access token expires, the frontend can request a new access token using the refresh token without     requiring the user to log in again.
 
 API Overview
 
