@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser")
 const app = express()
 const pool = require("./src/db")
 const path = require("path")
-const PORT = process.env.CLIENT_URL || 5000
+const PORT = process.env.PORT || 5000
 
 const authRoutes = require("./routes/auth.routes")
 const chatRoutes = require("./routes/chat.routes")

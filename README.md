@@ -132,4 +132,4 @@ The backend exposes REST endpoints for the application's main resources, includi
     /clients       Coach/client relationships
 
 Individual routes primarily use the appropriate HTTP methods, including `GET`, `POST`, `PATCH`, and `DELETE`.
-Individual routes primarily use the appropriate HTTP methods, including `GET`, `POST`, `PATCH`, and `DELETE`.
+
