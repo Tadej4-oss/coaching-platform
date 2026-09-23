@@ -83,7 +83,7 @@ router.get("/verify-email", async (req, res) => {
     }
 
     //4.0 return to login
-    return res.redirect("http://localhost:5173")
+    return res.redirect(`${process.env.CLIENT_URL}`)
 })
 
 router.get("/me", authenticateToken, async (req, res) => {
