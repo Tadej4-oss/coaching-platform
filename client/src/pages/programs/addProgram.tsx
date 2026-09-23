@@ -4,6 +4,7 @@ import { refreshToken } from "../../middleware/auth"
 import { useEffect, useState } from "react"
 import type { programForm } from "../../types/client"
 import "./addPrograms.css"
+import { API_URL } from "../../config/api"
 
 
 export default function AddProgram(){
@@ -31,7 +32,7 @@ export default function AddProgram(){
     }
 
     async function handleAuth(){
-        const resposne = await fetch("http://localhost:5000/utils/me", {
+        const resposne = await fetch(`${API_URL}/utils/me`, {
             credentials: "include"
         })
 
@@ -43,7 +44,7 @@ export default function AddProgram(){
             }
             
 
-            const retryResponse = await fetch("http://localhost:5000/utils/me", {
+            const retryResponse = await fetch(`${API_URL}/utils/me`, {
                 credentials: "include"
             })
 
@@ -61,7 +62,7 @@ export default function AddProgram(){
         e.preventDefault()
 
         try {
-            const response = await fetch("http://localhost:5000/users/createProgram", {
+            const response = await fetch(`${API_URL}/users/createProgram`, {
                 method: "POST",
                 credentials: "include",
                 headers: {

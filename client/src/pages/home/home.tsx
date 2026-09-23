@@ -4,6 +4,7 @@ import ClientHome from "./clientHome.tsx"
 import CoachHome from "./coachHome.tsx"
 import "./home.css"
 import { refreshToken } from "../../middleware/auth.ts"
+import { API_URL } from "../../config/api"
 
 export default function Home(){
     const [role, setRole] = useState("client")
@@ -12,7 +13,7 @@ export default function Home(){
     useEffect(() => {
         async function getMe() {
             try {
-                const response = await fetch("http://localhost:5000/utils/me", {
+                const response = await fetch(`${API_URL}/utils/me`, {
                     credentials: "include"
                 })
             
@@ -25,7 +26,7 @@ export default function Home(){
                         return nav("/login")
                     }
                 
-                    const retryResponse = await fetch("http://localhost:5000/utils/me", {
+                    const retryResponse = await fetch(`${API_URL}/utils/me`, {
                     credentials: "include"
                     })
                 
@@ -54,7 +55,7 @@ export default function Home(){
 
 
     async function getRole(){
-        const response = await fetch("http://localhost:5000/auth/getRole", {
+        const response = await fetch(`${API_URL}/auth/getRole`, {
             credentials: "include",
         })
 

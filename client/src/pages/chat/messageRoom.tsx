@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import type { Message, Client } from "../../types/client"
 import { refreshToken } from "../../middleware/auth"
 import "./messageRoom.css"
+import { API_URL } from "../../config/api"
 
 export default function Client(){
     const { roomid } = useParams()
@@ -36,7 +37,7 @@ export default function Client(){
     }, [])
 
     async function getMe() {
-            const response = await fetch("http://localhost:5000/utils/me", {
+            const response = await fetch(`${API_URL}/utils/me`, {
                 credentials: "include"
             })
     
@@ -47,7 +48,7 @@ export default function Client(){
                     return nav("/login")
                 }
     
-                const retryResponse = await fetch("http://localhost:5000/utils/me", {
+                const retryResponse = await fetch(`${API_URL}/utils/me`, {
                     credentials: "include"
                 })
             
@@ -67,7 +68,7 @@ export default function Client(){
             console.log("accesstokentoken")
     }
     async function createNewMsg() {
-        const response = await fetch("http://localhost:5000/chatroom/createmessage", {
+        const response = await fetch(`${API_URL}/chatroom/createmessage`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -91,7 +92,7 @@ export default function Client(){
         console.log(data)
     }
     async function pullConvo(){
-        const response = await fetch(`http://localhost:5000/chatroom/getconvo/${roomid}`, {
+        const response = await fetch(`${API_URL}/chatroom/getconvo/${roomid}`, {
             credentials: "include"
         })
         const data = await response.json()
@@ -99,7 +100,7 @@ export default function Client(){
         console.log(data)
     }
     async function pullClient() {
-        const response = await fetch(`http://localhost:5000/chatroom/pullclient/${roomid}`, {
+        const response = await fetch(`${API_URL}/chatroom/pullclient/${roomid}`, {
             credentials: "include"
         })
 
@@ -108,7 +109,7 @@ export default function Client(){
         console.log(data)
     }
     async function pullPrograms() {
-        const response = await fetch("http://localhost:5000/programs/getPrograms", {
+        const response = await fetch(`${API_URL}/programs/getPrograms`, {
             credentials: "include"
         })
 
@@ -117,7 +118,7 @@ export default function Client(){
         console.log(data)
     }
     async function addProgram(id: number) {
-        const response = await fetch(`http://localhost:5000/programs/addClientProgram/${client.id}/${id}`, {
+        const response = await fetch(`${API_URL}/programs/addClientProgram/${client.id}/${id}`, {
             method: "POST",
             credentials: "include"
         })
@@ -136,7 +137,7 @@ export default function Client(){
                 
                 <div className="client-profile-card">
                 
-                    <img className="client-profile-img" src={`http://localhost:5000${client?.profile_image_url}`} alt="Client profile"/>
+                    <img className="client-profile-img" src={`${API_URL}${client?.profile_image_url}`} alt="Client profile"/>
                 
                     <div className="client-profile-info">
                         <h1 className="client-profile-name"> {client?.username || client?.email} </h1>

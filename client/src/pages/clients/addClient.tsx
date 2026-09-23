@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { refreshToken } from "../../middleware/auth"
 import { useEffect, useState } from "react"
 import "./addClient.css"
+import { API_URL } from "../../config/api"
 
 export default function AddClient(){
     const [clients, setClients] = useState<any[]>([])
@@ -14,7 +15,7 @@ export default function AddClient(){
     },[])
 
     async function handleAuth(){
-        const resposne = await fetch("http://localhost:5000/utils/me", {
+        const resposne = await fetch(`${API_URL}/utils/me`, {
             credentials: "include"
         })
 
@@ -26,7 +27,7 @@ export default function AddClient(){
             }
             
 
-            const retryResponse = await fetch("http://localhost:5000/utils/me", {
+            const retryResponse = await fetch(`${API_URL}/utils/me`, {
                 credentials: "include"
             })
 
@@ -41,7 +42,7 @@ export default function AddClient(){
     }
 
     async function getClients() {
-        const response = await fetch("http://localhost:5000/users/getClients", {
+        const response = await fetch(`${API_URL}/users/getClients`, {
             credentials: "include"
         })
 
@@ -52,7 +53,7 @@ export default function AddClient(){
 
     async function addClient(id: number) {
         console.log(clients[id])
-        const response = await fetch("http://localhost:5000/users/addClient", {
+        const response = await fetch(`${API_URL}/users/addClient`, {
             method: "POST",
             credentials: "include",
             headers: {

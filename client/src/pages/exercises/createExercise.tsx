@@ -3,6 +3,7 @@ import { refreshToken } from "../../middleware/auth"
 import { useEffect, useState} from "react"
 import type { Exercises } from "../../types/client"
 import "./createExercise.css"
+import { API_URL } from "../../config/api"
 
 
 export default function CreateExercise(){
@@ -16,7 +17,7 @@ export default function CreateExercise(){
     },[])
 
     async function handleAuth(){
-        const resposne = await fetch("http://localhost:5000/utils/me", {
+        const resposne = await fetch(`${API_URL}/utils/me`, {
             credentials: "include"
         })
 
@@ -28,7 +29,7 @@ export default function CreateExercise(){
             }
             
 
-            const retryResponse = await fetch("http://localhost:5000/utils/me", {
+            const retryResponse = await fetch(`${API_URL}/utils/me`, {
                 credentials: "include"
             })
 
@@ -58,7 +59,7 @@ export default function CreateExercise(){
     
 
     async function addExercise(i: number) {
-        const response = await fetch("http://localhost:5000/users/addExercise", {
+        const response = await fetch(`${API_URL}/users/addExercise`, {
             method: "POST",
             credentials: "include",
             headers: {

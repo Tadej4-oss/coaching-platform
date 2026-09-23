@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./progress.css"
+import { API_URL } from "../../config/api"
 
 
 export default function Progress(){
@@ -14,7 +15,7 @@ export default function Progress(){
 
     useEffect(() => {
          async function pullExercises() {
-            const response = await fetch("http://localhost:5000/progress/pullData", {
+            const response = await fetch(`${API_URL}/progress/pullData`, {
                 credentials: "include"
             })
         
@@ -28,7 +29,7 @@ export default function Progress(){
     },[])
 
     async function addProgress() {
-        const response = await fetch("http://localhost:5000/progress/addProgress", {
+        const response = await fetch(`${API_URL}/progress/addProgress`, {
             method: "POST",
             credentials: "include",
             headers: {

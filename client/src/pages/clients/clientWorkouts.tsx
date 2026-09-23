@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import "./clientWorkouts.css"
+import { API_URL } from "../../config/api"
 
 export default function ClientWorkouts(){
     const {weeknumber, programid} = useParams()
@@ -14,7 +15,7 @@ export default function ClientWorkouts(){
     },[])
 
     async function getWorkoutDays() {
-        const response = await fetch(`http://localhost:5000/client/getWorkoutDays/${weeknumber}/${programid}`, {
+        const response = await fetch(`${API_URL}/client/getWorkoutDays/${weeknumber}/${programid}`, {
             credentials: "include"
         })
 
@@ -24,7 +25,7 @@ export default function ClientWorkouts(){
     }
 
     async function pullExercises(id: number) {
-        const response = await fetch(`http://localhost:5000/client/getExercises/${id}`, {
+        const response = await fetch(`${API_URL}/client/getExercises/${id}`, {
             credentials: "include"
         })
 

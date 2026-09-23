@@ -3,6 +3,7 @@ import { refreshToken } from "../../middleware/auth"
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import type { Program, ProgramWeeks, Client } from "../../types/client"
+import { API_URL } from "../../config/api"
 
 
 export default function Programs(){
@@ -19,7 +20,7 @@ export default function Programs(){
 
 
     async function handleAuth(){
-            const resposne = await fetch("http://localhost:5000/utils/me", {
+            const resposne = await fetch(`${API_URL}/utils/me`, {
                 credentials: "include"
             })
     
@@ -31,7 +32,7 @@ export default function Programs(){
                 }
                 
     
-                const retryResponse = await fetch("http://localhost:5000/utils/me", {
+                const retryResponse = await fetch(`${API_URL}/utils/me`, {
                     credentials: "include"
                 })
     
@@ -46,7 +47,7 @@ export default function Programs(){
     }
 
     async function pullData(){
-        const response = await fetch("http://localhost:5000/programs/getPrograms", {
+        const response = await fetch(`${API_URL}/programs/getPrograms`, {
             credentials: "include"
         })
 
@@ -57,7 +58,7 @@ export default function Programs(){
     }
 
     async function pullProgramData(id: number) {
-        const response = await fetch(`http://localhost:5000/workouts/getProgramData/${id}`, {
+        const response = await fetch(`${API_URL}/workouts/getProgramData/${id}`, {
             credentials: "include"
         })
 
@@ -67,7 +68,7 @@ export default function Programs(){
     }
 
     async function addPorgramToClient(id: number) {
-        const response = await fetch(`http://localhost:5000/programs/addClientProgram/${id}/${programId}`, {
+        const response = await fetch(`${API_URL}/programs/addClientProgram/${id}/${programId}`, {
             method: "POST",
             credentials: "include",
         })

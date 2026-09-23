@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import type { Exercises } from "../../types/client"
 import "./indivDayExercises.css"
+import { API_URL } from "../../config/api"
 
 export default function IndivDayExercises(){
     const [exercises, setExercises] = useState<Exercises[]>([])
@@ -11,7 +12,7 @@ export default function IndivDayExercises(){
 
     useEffect(() =>{
         async function getExercises(){
-            const response = await fetch(`http://localhost:5000/workouts/pullExercises/${dayid}`, {
+            const response = await fetch(`${API_URL}/workouts/pullExercises/${dayid}`, {
                 credentials: "include"
             })
 
@@ -24,7 +25,7 @@ export default function IndivDayExercises(){
     },[])
 
     async function removeExercise(id: number, index: number) {
-        const response = await fetch(`http://localhost:5000/workouts/removeExercise/${id}/${dayid}`, {
+        const response = await fetch(`${API_URL}/workouts/removeExercise/${id}/${dayid}`, {
             method: "DELETE",
             credentials: "include"
         })

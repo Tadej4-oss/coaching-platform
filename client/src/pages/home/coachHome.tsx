@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import "./coachHome.css"
 import type { Client, Coach } from "../../types/client"
 import { useNavigate } from "react-router-dom"
+import { API_URL } from "../../config/api"
 
 export default function CoachHome(){
     //decleare variables
@@ -15,7 +16,7 @@ export default function CoachHome(){
     //pull data on render
     useEffect(() => {
         async function pullData(){
-            const response = await fetch("http://localhost:5000/utils/getCoachData", {
+            const response = await fetch(`${API_URL}/utils/getCoachData`, {
                 credentials: "include"
             })
 
@@ -24,13 +25,13 @@ export default function CoachHome(){
             setClients(data.client)
             setPrograms(data.programs.length)
         }
-
+        
         pullData()
     },[])
 
     //logouts
     async function handleLogout(){
-         await fetch("http://localhost:5000/auth/logout", {
+         await fetch(`${API_URL}/auth/logout`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -45,7 +46,7 @@ export default function CoachHome(){
 
     //get room id
     async function getRoomId(id: number){
-        const response = await fetch(`http://localhost:5000/chatroom/getRoomid/${id}`, {
+        const response = await fetch(`${API_URL}/chatroom/getRoomid/${id}`, {
             credentials: "include"
         })
 
@@ -98,7 +99,7 @@ export default function CoachHome(){
                         return(
                         <div onClick = {() =>{getRoomId(client.id)}} key = {client.id} className="scroll-clients-div">
                             <p className = "client-profile-card-username" >{client.username || `Client${index}`}</p>
-                            <img className = "client-profile-card-pfp" src={`http://localhost:5000${client.profile_image_url}`} alt = "profile picture"></img>
+                            <img className = "client-profile-card-pfp" src={`${API_URL}${client.profile_image_url}`} alt = "profile picture"></img>
                             <p className = "client-profile-card-email">{client.email}</p>
                             <p className = "client-profile-card-bio">{client.bio ||"No bio yet"}</p>
                         </div>

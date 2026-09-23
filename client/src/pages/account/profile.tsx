@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import type { Coach } from "../../types/client"
 import { useNavigate } from "react-router-dom"
 import "./profle.css"
+import { API_URL } from "../../config/api"
 
 
 export default function MyProfile(){
@@ -15,13 +16,13 @@ export default function MyProfile(){
         async function getMe() {
             try {
                 //check accesstoken
-                const response = await fetch("http://localhost:5000/utils/me", {
+                const response = await fetch(`${API_URL}/utils/me`, {
                     credentials: "include"
                 })
 
                 //if accestoken false send to refresh
                 if(response.status === 401){
-                    const refresh = await fetch("http://localhost:5000/utils/refresh", {
+                    const refresh = await fetch(`${API_URL}/utils/refresh`, {
                         credentials: "include"
                     })
 
@@ -32,7 +33,7 @@ export default function MyProfile(){
                     }
 
                     //ce je refreshtoken ti issua nou accestoken za revalidajata
-                    const retryResponse = await fetch("http://localhost:5000/utils/me", {
+                    const retryResponse = await fetch(`${API_URL}/utils/me`, {
                         credentials: "include"
                     })
 
@@ -77,7 +78,7 @@ export default function MyProfile(){
     //add bio
     async function addBio() {
         try {
-            const resposne = await fetch("http://localhost:5000/users/addBio", {
+            const resposne = await fetch(`${API_URL}/users/addBio`, {
                 method: "POST",
                 credentials: "include",
                 headers: {

@@ -2,6 +2,7 @@ import { useState } from "react"
 import type { FormEvent } from "react"
 import { useNavigate } from "react-router-dom"
 import "./login.css"
+import { API_URL } from "../../config/api"
 
 export default function Login() {
     const nav = useNavigate()
@@ -14,7 +15,7 @@ export default function Login() {
         e.preventDefault()
 
         try {
-            const response = await fetch("http://localhost:5000/auth/login", {
+            const response = await fetch(`${API_URL}/auth/login`, {
                 method: "POST",
                 credentials: "include",
                 headers: {

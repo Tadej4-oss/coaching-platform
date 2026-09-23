@@ -1,3 +1,5 @@
+import { API_URL } from "../config/api"
+
 let refreshPromise: Promise<Response> | null = null
 
 export async function refreshToken() {
@@ -7,7 +9,7 @@ export async function refreshToken() {
     }
 
     //else run it (why no await?)
-    refreshPromise = fetch("http://localhost:5000/utils/refresh", {
+    refreshPromise = fetch(`${API_URL}/utils/refresh`, {
         credentials: "include"
     })
 

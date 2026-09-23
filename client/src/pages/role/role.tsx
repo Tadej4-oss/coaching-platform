@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./role.css"
+import { API_URL } from "../../config/api"
 
 export default function Role(){
     const [role, setRole] = useState<string>("")
@@ -9,7 +10,7 @@ export default function Role(){
     const nav = useNavigate()
 
     async function addRole() {
-        const response = await fetch(`http://localhost:5000/users/addRole/${role}`, {
+        const response = await fetch(`${API_URL}/users/addRole/${role}`, {
                 method: "PATCH",
                 credentials: "include",
               

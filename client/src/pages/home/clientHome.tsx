@@ -3,6 +3,7 @@ import {  useNavigate } from "react-router-dom"
 import { refreshToken } from "../../middleware/auth.ts"
 import "./clientHome.css"
 import type { Client } from "../../types/client.ts"
+import { API_URL } from "../../config/api"
 
 export default function ClientHome(){
     const [personalRecords, setPersonalRecords] = useState<any[]>([])
@@ -28,7 +29,7 @@ export default function ClientHome(){
     },[])
 
     async function pullData() {
-        const response = await fetch("http://localhost:5000/client/pullData", {
+        const response = await fetch(`${API_URL}/client/pullData`, {
             credentials: "include"
         })
 
@@ -43,7 +44,7 @@ export default function ClientHome(){
     }
 
     async function handleLogout(){
-        const response = await fetch("http://localhost:5000/auth/logout", {
+        const response = await fetch(`://localhost:5000/auth/logout`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -57,7 +58,7 @@ export default function ClientHome(){
     }
 
     async function getMe() {
-        const response = await fetch("http://localhost:5000/utils/me", {
+        const response = await fetch(`${API_URL}/utils/me`, {
             credentials: "include"
         })
 
@@ -68,7 +69,7 @@ export default function ClientHome(){
                 return nav("/login")
             }
 
-            const retryResponse = await fetch("http://localhost:5000/utils/me", {
+            const retryResponse = await fetch(`${API_URL}/utils/me`, {
                 credentials: "include"
             })
         

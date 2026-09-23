@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import type { passwordForm } from "../../types/client"
 import "./changePassword.css"
+import { API_URL } from "../../config/api"
 
 export default function ChangePassword(){
     const [error, setError] = useState<string>("")
@@ -31,12 +32,12 @@ export default function ChangePassword(){
 
     async function getMe() {
         try {
-            const response = await fetch("http://localhost:5000/utils/me", {
+            const response = await fetch(`${API_URL}/utils/me`, {
                 credentials: "include"
             })
 
             if(response.status === 401){
-                const refresh = await fetch("http://localhost:5000/utils/refresh", {
+                const refresh = await fetch(`${API_URL}/utils/refresh`, {
                     credentials: "include"
                 })
 
@@ -44,7 +45,7 @@ export default function ChangePassword(){
                     return nav("/login")
                 }
 
-                const retryResponse = await fetch("http://localhost:5000/utils/me", {
+                const retryResponse = await fetch(`${API_URL}/utils/me`, {
                     credentials: "include"
                 })
 
@@ -72,7 +73,7 @@ export default function ChangePassword(){
         }
 
         try {
-           const response = await fetch("http://localhost:5000/users/changePassword", {
+           const response = await fetch(`${API_URL}/users/changePassword`, {
             method: "POST",
             credentials: "include",
             headers: {

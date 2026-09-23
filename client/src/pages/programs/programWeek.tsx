@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import type { WorkoutDay, Exercises } from "../../types/client"
 import { useEffect, useState } from "react"
 import "./programWeek.css"
+import { API_URL } from "../../config/api"
 
 export default function ProgramWeek(){
     const [days, setDays] = useState<WorkoutDay[]>([])
@@ -22,7 +23,7 @@ export default function ProgramWeek(){
 
     useEffect(() => {
         async function pullWeek() {
-            const response = await fetch(`http://localhost:5000/workouts/getWeekDays/${weekid}`, {
+            const response = await fetch(`${API_URL}/workouts/getWeekDays/${weekid}`, {
                 credentials: "include"
             })
 
@@ -34,7 +35,7 @@ export default function ProgramWeek(){
     },[])
 
     async function updateWorkoutDescription() {
-        const response = await fetch(`http://localhost:5000/workouts/updateDayDescription/${dayId}/${description}`, {
+        const response = await fetch(`${API_URL}/workouts/updateDayDescription/${dayId}/${description}`, {
             method: "PATCH",
             credentials: "include"
         })
@@ -47,7 +48,7 @@ export default function ProgramWeek(){
     async function searchForExercise() {
         try {
             setLoading(true)
-            const response = await fetch(`http://localhost:5000/workouts/searchExercise/${searchExercise}}`, {
+            const response = await fetch(`${API_URL}/workouts/searchExercise/${searchExercise}}`, {
                 method: "GET",
                 credentials: "include"
             })
@@ -69,7 +70,7 @@ export default function ProgramWeek(){
     }
 
     async function confirmExercise() {
-       const response = await fetch(`http://localhost:5000/workouts/addExercise`, {
+       const response = await fetch(`${API_URL}/workouts/addExercise`, {
            method: "POST",
            credentials: "include",
            headers: {

@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser")
 const app = express()
 const pool = require("./src/db")
 const path = require("path")
-const PORT = 5000
+const PORT = process.env.CLIENT_URL || 5000
 
 const authRoutes = require("./routes/auth.routes")
 const chatRoutes = require("./routes/chat.routes")
@@ -20,8 +20,7 @@ app.use(
     express.json(), 
     cors({
         origin: [
-            "http://localhost:5173",
-            "http://localhost:4173"
+            `${process.env.CLIENT_URL}`,
         ],
         credentials: true
     }),
