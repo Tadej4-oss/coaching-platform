@@ -101,7 +101,7 @@ router.post("/register", async (req, res) => {
             //5.0 create a resend instance using api key
             const resend = new Resend(process.env.RESEND_API_KEY)
             //5.1 create a link to send to email (use po "?"  je query ne pa param, zto je pol route lhko sam /verfy-email)
-            const verificationLink = `http://localhost:5000/utils/verify-email?token=${verificationToken}`
+            const verificationLink = `http://${process.env.SERVER_URL}/utils/verify-email?token=${verificationToken}`
 
             //5.2 send actual email
             resend.emails.send({
