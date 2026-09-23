@@ -4,8 +4,10 @@ const authenticateToken = require("../middleware/auth.middleware")
 const pool = require("../src/db")
 
 router.get("/getconvo/:id", authenticateToken, async (req, res) => {
+    //1.0 get room id from params
     const room = req.params.id
 
+    //2.0 get convo from messages in usernaame in email from users also order by
     const convo = await pool.query(`
         SELECT 
             messages.content,
@@ -18,19 +20,23 @@ router.get("/getconvo/:id", authenticateToken, async (req, res) => {
         ORDER BY messages.created_at ASC;
     `, [room])
 
+    //3.0 posli convo to frontend
     res.json({
         chat: convo.rows
     })
 })
 
 router.get("/getRoomid/:id", authenticateToken, async (req, res) => {
+    //1.0 get coach in client zato da ves kjr room poslat
     const coach = req.user.id
     const client = req.params.id
 
+    //2.0 najdi ta room in db
     const roomId = await pool.query(`
         SELECT id FROM conversations WHERE coach_id = $1 AND client_id = $2
     `, [coach, client])
 
+    //2.1 če ga ni ga naredi
     if(roomId.rows.length === 0){
         const createRoom = await pool.query(`
             INSERT INTO conversations (
@@ -40,14 +46,14 @@ router.get("/getRoomid/:id", authenticateToken, async (req, res) => {
         `, [coach, client])
 
 
+        //2.2 posli romm id
         return res.json({
             success: true,
             room: createRoom.rows[0].id
         })
     }
-   
-    console.log(roomId.rows[0])
 
+    //3 posli romm id
     res.json({
         success: true,
         room: roomId.rows[0].id
@@ -55,10 +61,7 @@ router.get("/getRoomid/:id", authenticateToken, async (req, res) => {
 })
 
 router.post("/createmessage", authenticateToken, async (req, res) => {
-    console.log("sender id:", req.user.id)
-    console.log("room id:", req.body.roomid)
-    console.log("content:", req.body.newMessage)
-
+    //1.0 INSERT into messages
     const createMessag = await pool.query(`
         INSERT INTO messages (
             conversation_id,
@@ -71,13 +74,15 @@ router.post("/createmessage", authenticateToken, async (req, res) => {
         req.body.newMessage
     ])
 
+    //2.0 send success
     res.json({
-        message: "route works"
+        success: true
     })
 
 })
 
 router.get("/pullclient/:id", authenticateToken, async (req, res) => {
+    //1.0 messageroom za coacha je drgacn k za client. tko da tle isotcasno pullas id od current userja in data 
     const user = await pool.query(`
         SELECT client_id FROM conversations WHERE id = $1 AND coach_id = $2
     `, [req.params.id, req.user.id])

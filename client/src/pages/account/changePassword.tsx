@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import type { passwordForm } from "../types/client"
-import "./styles/changePassword.css"
+import type { passwordForm } from "../../types/client"
+import "./changePassword.css"
 
 export default function ChangePassword(){
     const [error, setError] = useState<string>("")

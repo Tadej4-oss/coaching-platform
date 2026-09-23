@@ -1,13 +1,14 @@
 import { useState } from "react"
 import type { FormEvent } from "react"
 import { useNavigate } from "react-router-dom"
-import "./styles/login.css"
+import "./login.css"
 
 export default function Login() {
     const nav = useNavigate()
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState<string>("")
 
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -26,9 +27,11 @@ export default function Login() {
             })
 
             const data = await response.json()
-             if(data.success){
+            console.log(data)
+            if(data.success){
                 nav(data.redirect)
             }
+            setError(data.error)
         } catch (err) {
             console.log(err)
         } finally {
@@ -60,12 +63,10 @@ export default function Login() {
 
                 <button>Login</button>
 
-                <button
-                    type="button"
-                    onClick={() => nav("/register")}
-                >
+                <button type="button" onClick={() => nav("/register")}>
                     Create an Account
                 </button>
+                <p>{error}</p>
 
             </form>
         </div>

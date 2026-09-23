@@ -1,7 +1,7 @@
 import { useState} from "react"
 import type { FormEvent } from "react"
 import { useNavigate } from "react-router-dom"
-import "./styles/register.css"
+import "./register.css"
 
 export default function Register() {
     const nav = useNavigate()

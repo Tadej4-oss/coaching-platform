@@ -1,9 +1,9 @@
 
 import { useNavigate } from "react-router-dom"
-import { refreshToken } from "./middleware/auth"
+import { refreshToken } from "../../middleware/auth"
 import { useEffect, useState } from "react"
-import type { programForm } from "../types/client"
-import "./styles/addPrograms.css"
+import type { programForm } from "../../types/client"
+import "./addPrograms.css"
 
 
 export default function AddProgram(){

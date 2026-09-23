@@ -6,7 +6,6 @@ const pool = require("../src/db")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 const authenticateToken = require("../middleware/auth.middleware")
-const { success } = require("zod")
 
 
 function createTokens(user){
@@ -28,37 +27,48 @@ function createTokens(user){
 }
 
 router.get("/verify-email", async (req, res) => {
+    //1.0 pull token from url (sent from register)
     const token = req.query.token
+    //1.1 hash it to compare to db token
     const hashedToken = crypto.createHash("sha256").update(token).digest("hex")
 
+    //2.0  check for valid token and get user id
     const user = await pool.query(`
         SELECT user_id FROM email_verification_tokens WHERE token_hash = $1 AND expires_at > NOW()
     `, [hashedToken])
 
+    //2.2 token expired, impliment resend token logic
     if(user.rows.length === 0){
         //impliment resend token 
         const resendLink = "http://localhost:5000/utils/refresh-email-token"
         return res.status(400).send(`invalid or expired verification link <a href = ${resendLink}>Resens Varification Link</a>`)
     }
 
+
+    //3.0 open db connection
     const client = await pool.connect()
 
     try {
+        //3.1 start from here if fails delete use after this 
         await client.query("BEGIN")
 
+        //3.2 set user to be verified
         await pool.query(`
             UPDATE users SET 
             verified = true
             WHERE id = $1
             `, [user.rows[0].user_id])
 
+        //3.3 delete email token
         await pool.query(`
             DELETE FROM email_verification_tokens WHERE user_id = $1
             `, [user.rows[0].user_id])
-
+ 
+        //3.4 finish transaction
         await client.query("COMMIT")
         
     } catch (err) {
+        //3.5 if fails rollback to begin
         await client.query("ROLLBACK")
         console.error(err)
 
@@ -68,17 +78,21 @@ router.get("/verify-email", async (req, res) => {
         });
     }
     finally{
+        //3.6 close db connection
         client.release()
     }
 
+    //4.0 return to login
     return res.redirect("http://localhost:5173")
 })
 
 router.get("/me", authenticateToken, async (req, res) => {
+    //"eazy" pull user data 
     const userData = await pool.query(`
         SELECT * FROM users WHERE id = $1
     `,[req.user.id])
 
+    //lhko bi dodau error handling if user not found za extra check sam authenticateToken ze nrdi to
     return res.status(201).json({
         success: true,
         redirect: "/home",
@@ -93,9 +107,10 @@ router.get("/me", authenticateToken, async (req, res) => {
 })
 
 router.get("/refresh", async (req, res) => {
-    console.log("REFRESH CALLED:", Date.now())
+    //1.0 get token from payload 
     const refreshToken = req.cookies.refreshToken
 
+    //1.1 if no token return
     if(!refreshToken){
         return res.status(401).json({
             success: false,
@@ -103,18 +118,22 @@ router.get("/refresh", async (req, res) => {
         })
     }
 
+    //2.0 else 
     try {
 
+        //2.1 verify token
         const verify = jwt.verify(refreshToken, process.env.JWT_REFRESH_TOKEN)
 
+        //2.2 hash it to compare to db
         const hashedRefreshToken = crypto.createHash("sha256").update(refreshToken).digest("hex")
 
-
+        //2.3 check for token and check if not expired
         const checkToken = await pool.query(`
             SELECT * FROM refresh_tokens WHERE token_hash = $1 AND expires_at > NOW()
         `, [hashedRefreshToken])
 
 
+        //2.4 if expired or not exists return
         if(checkToken.rows.length === 0){
             return res.status(401).json({
                 success: false,
@@ -122,14 +141,16 @@ router.get("/refresh", async (req, res) => {
             })
         }
 
+        //2.5 get userid to create new tokens
         const user = await pool.query(`
             SELECT * FROM users WHERE id = $1
         `, [verify.id])
 
+        //2.6 create tokens aand hash refresh token
         const newTokens = createTokens(user.rows[0])
-
         const newRefresTokenHashed = crypto.createHash("sha256").update(newTokens.refreshToken).digest("hex")
 
+        //2.7 update refresh token in db
         await pool.query(`
             UPDATE refresh_tokens 
             SET
@@ -140,6 +161,7 @@ router.get("/refresh", async (req, res) => {
                 user_id = $2
         `, [newRefresTokenHashed, verify.id])
 
+        //2.8 send cookies as payload
         res.cookie("accessToken", newTokens.accessToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
@@ -156,6 +178,7 @@ router.get("/refresh", async (req, res) => {
             path : "/"
         })
 
+        //2.9 return
         res.json({
             success: true,
             message: "new token issued, refresh token updated"
@@ -170,39 +193,15 @@ router.get("/refresh", async (req, res) => {
     
 })
 
-router.post("/checkPassword", authenticateToken, async (req, res) => {
-    const password = await pool.query(`
-        SELECT password_hash FROM users WHERE id = $1
-    `, [req.user.id])
-
-    if(password.rows.length === 0){
-        return res.status(500).json({
-            success: false,
-            massage: "Cant get psw from DB"
-        })
-    }
-
-    const passwordMatches = await bcrypt.compare(req.body.confirmPassword, password.rows[0].password_hash)
-
-    if(passwordMatches){
-        return res.status(201).json({
-            success: true,
-            message: "Password Correct"
-        })
-    }
-
-
-    res.json({
-        success: false,
-        message: "wrong psw"
-    })
-})
-
+//should not be in utils
 router.get("/getCoachData", authenticateToken, async (req, res) => {
+
+    //1.0 get coach data
     const coach = await pool.query(`
         SELECT email, role, profile_image_url, id, username  FROM users WHERE id = $1
     `, [req.user.id])
 
+    //1.1 get client related to that coach
     const clients = await pool.query(`
         SELECT users.*
         FROM users
@@ -211,11 +210,10 @@ router.get("/getCoachData", authenticateToken, async (req, res) => {
         WHERE coach_client_rel.coach_id = $1;
     `, [req.user.id])
 
+    //1.2 get programs from that coach 
     const programs = await pool.query(`
         SELECT * FROM programs WHERE coach_id = $1
     `, [req.user.id])
-
-    console.log(programs.rows)
 
     res.json({
         coach: coach.rows[0],

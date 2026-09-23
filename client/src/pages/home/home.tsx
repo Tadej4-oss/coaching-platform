@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import ClientHome from "./clientHome"
-import CoachHome from "./coachHome"
-import "./styles/home.css"
-import { refreshToken } from "../components/middleware/auth.ts"
+import ClientHome from "./clientHome.tsx"
+import CoachHome from "./coachHome.tsx"
+import "./home.css"
+import { refreshToken } from "../../middleware/auth.ts"
 
 export default function Home(){
     const [role, setRole] = useState("client")
@@ -36,35 +36,31 @@ export default function Home(){
                 
                     const data = await retryResponse.json()
                     console.log("RETRY RES DATA:", data)
-                    setRole(data.user.role)
                     return
                 
                 }
             
                 const data = await response.json()
                 console.log("reset try RES DATA:", data)
-                setRole(data.user.role)
+                
             
             } catch (err) {
                 console.error("AUTH ERROR:", err)
             }
         }
         getMe()
+        getRole()
     },[])
 
 
-    async function handleLogout(){
-        const response = await fetch("http://localhost:5000/auth/logout", {
-            method: "POST",
+    async function getRole(){
+        const response = await fetch("http://localhost:5000/auth/getRole", {
             credentials: "include",
-            headers: {
-                "Content-type" : "application/json"
-            }
         })
 
-        if(response.status === 201){
-            nav("/login")
-        }
+        const data = await response.json()
+        setRole(data.role)
+        console.log(data)
     }
 
 
@@ -79,10 +75,6 @@ export default function Home(){
         <>
             <CoachHome />
         </>}
-
-        <div className="dev-btn-div">
-            <button onClick={() => {handleLogout()}}>Logout</button>
-        </div>
         </>
     )
 }

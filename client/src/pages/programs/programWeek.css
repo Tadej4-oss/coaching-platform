@@ -1,0 +1,452 @@
+/* ==================================================
+   WORKOUT DAYS PAGE
+================================================== */
+
+.workout-day-div {
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.workout-day-div > h1 {
+    margin: 10px 0 12px;
+
+    color: white;
+
+    font-size: 1.35rem;
+    font-weight: 700;
+
+    text-transform: capitalize;
+}
+
+
+/* ==================================================
+   WORKOUT DAY CARD
+================================================== */
+
+.workout-day-card {
+    padding: 18px;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.workout-day-card:hover {
+    border-color: rgba(99, 102, 241, .45);
+    transform: translateX(3px);
+}
+
+.workout-day-card p {
+    margin: 0;
+
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+
+/* ==================================================
+   BACK BUTTON
+================================================== */
+
+.back-arrow {
+    width: 42px;
+    height: 42px;
+
+    margin: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.back-arrow h1 {
+    margin: 0;
+
+    color: white;
+
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.back-arrow:hover {
+    background: rgba(255, 255, 255, .05);
+
+    border-color: rgba(99, 102, 241, .35);
+}
+
+
+/* ==================================================
+   INDIVIDUAL DAY SIDEMENU
+================================================== */
+
+.indiv-day-sidemenu {
+    position: fixed;
+
+    top: 0;
+    right: -100%;
+
+    width: 100%;
+    height: 100vh;
+
+    box-sizing: border-box;
+
+    background: var(--bg);
+    color: white;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    z-index: 900;
+
+    transition: right .35s ease;
+}
+
+#indiv-day-label:checked ~ .indiv-day-sidemenu {
+    right: 0;
+}
+
+
+/* ==================================================
+   SHARED CARD STYLE
+================================================== */
+
+.change-description-div,
+.search-exercise-div,
+.indiv-ex-card {
+    width: calc(100% - 28px);
+
+    margin-left: 14px;
+    margin-right: 14px;
+
+    box-sizing: border-box;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 14px;
+}
+
+
+/* ==================================================
+   CHANGE DESCRIPTION
+================================================== */
+
+.change-description-div {
+    margin-bottom: 14px;
+    padding: 14px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* ==================================================
+   SEARCH EXERCISE
+================================================== */
+
+.search-exercise-div {
+    margin-bottom: 18px;
+    padding: 14px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.search-exercise-div h3 {
+    margin: 0 0 2px;
+
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+
+/* ==================================================
+   SHARED INPUT STYLE
+================================================== */
+
+.change-description-div input,
+.search-exercise-div input,
+.bottom-menu-input input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    background: rgba(255, 255, 255, .03);
+    color: white;
+
+    border: 1px solid rgba(255, 255, 255, .10);
+    border-radius: 10px;
+
+    font-size: .95rem;
+
+    transition: .2s;
+}
+
+.change-description-div input::placeholder,
+.search-exercise-div input::placeholder,
+.bottom-menu-input input::placeholder {
+    color: #6b7280;
+}
+
+.change-description-div input:focus,
+.search-exercise-div input:focus,
+.bottom-menu-input input:focus {
+    outline: none;
+
+    border-color: #6366f1;
+
+    background: rgba(255, 255, 255, .05);
+
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, .10);
+}
+
+
+/* ==================================================
+   SHARED PRIMARY BUTTON
+================================================== */
+
+.enter-day-div button,
+.change-description-div button,
+.search-exercise-div button,
+.indiv-ex-card button,
+.bottom-menu-confirm {
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #6366f1;
+    color: white;
+
+    font-size: .95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.change-description-div button:hover,
+.search-exercise-div button:hover,
+.indiv-ex-card button:hover,
+.bottom-menu-confirm:hover {
+    background: #4f46e5;
+}
+
+.change-description-div button:active,
+.search-exercise-div button:active,
+.indiv-ex-card button:active,
+.bottom-menu-confirm:active {
+    transform: scale(.98);
+}
+
+
+/* ==================================================
+   RESULTS
+================================================== */
+
+.resoult-div {
+    padding-bottom: 30px;
+}
+
+.resoult-div > h3 {
+    margin: 0 14px 12px;
+
+    color: white;
+
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.indiv-ex-div {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+
+/* ==================================================
+   EXERCISE CARD
+================================================== */
+
+.indiv-ex-card {
+    padding: 14px;
+}
+
+.indiv-ex-card h2 {
+    margin: 0 0 8px;
+
+    color: white;
+
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.indiv-ex-card p {
+    margin: 0 0 12px;
+
+    color: #9ca3af;
+
+    font-size: .9rem;
+    line-height: 1.45;
+}
+
+.indiv-ex-card h3 {
+    margin: 0 0 12px;
+
+    color: #a5b4fc;
+
+    font-size: .85rem;
+    font-weight: 600;
+}
+
+
+/* ==================================================
+   VIDEO
+================================================== */
+
+.video {
+    display: block;
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    margin-bottom: 12px;
+
+    object-fit: cover;
+
+    background: #09090b;
+
+    border-radius: 10px;
+
+    border: 1px solid rgba(255, 255, 255, .06);
+}
+
+
+/* ==================================================
+   BOTTOM MENU OVERLAY
+================================================== */
+
+.bottom-menu-overlay {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0);
+
+    pointer-events: none;
+
+    transition: background .3s ease;
+
+    z-index: 1000;
+}
+
+.bottom-menu-overlay.open {
+    background: rgba(0, 0, 0, .65);
+    pointer-events: auto;
+}
+
+
+/* ==================================================
+   BOTTOM MENU
+================================================== */
+
+.bottom-menu {
+    width: 100%;
+    max-width: 500px;
+
+    box-sizing: border-box;
+
+    padding: 18px 18px 28px;
+
+    background: var(--card);
+    color: white;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-bottom: none;
+
+    border-radius: 22px 22px 0 0;
+
+    transform: translateY(100%);
+
+    transition: transform .3s ease;
+}
+
+.bottom-menu.open {
+    transform: translateY(0);
+}
+
+.bottom-menu-handle {
+    width: 42px;
+    height: 4px;
+
+    margin: 0 auto 20px;
+
+    background: rgba(255, 255, 255, .2);
+
+    border-radius: 20px;
+}
+
+.bottom-menu h2 {
+    margin: 0 0 20px;
+
+    color: white;
+
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+
+/* ==================================================
+   BOTTOM MENU INPUT
+================================================== */
+
+.bottom-menu-input {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    margin-bottom: 14px;
+}
+
+.bottom-menu-input label {
+    color: #d1d5db;
+
+    font-size: .85rem;
+    font-weight: 600;
+}
+
+.bottom-menu-confirm {
+    margin-top: 8px;
+}

@@ -1,0 +1,101 @@
+/* ==================================================
+   ADD CLIENT
+================================================== */
+
+.add-client {
+    width: calc(100% - 30px);
+
+    margin: 30px auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    box-sizing: border-box;
+}
+
+
+/* ==================================================
+   CLIENT CARD
+================================================== */
+
+.add-client-card {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 14px;
+
+    transition: .2s;
+}
+
+.add-client-card:hover {
+    border-color: rgba(99, 102, 241, .35);
+}
+
+
+/* ==================================================
+   CLIENT EMAIL
+================================================== */
+
+.add-client-card p {
+    flex: 1;
+    min-width: 0;
+
+    margin: 0;
+
+    color: #d1d5db;
+
+    font-size: .88rem;
+    font-weight: 500;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ==================================================
+   ADD BUTTON
+================================================== */
+
+.add-client-card button {
+    flex-shrink: 0;
+
+    padding: 9px 13px;
+
+    background: rgba(99, 102, 241, .10);
+    color: #a5b4fc;
+
+    border: 1px solid rgba(99, 102, 241, .25);
+    border-radius: 9px;
+
+    font-size: .8rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.add-client-card button:hover {
+    background: rgba(99, 102, 241, .18);
+
+    border-color: rgba(99, 102, 241, .4);
+
+    color: white;
+}
+
+.add-client-card button:active {
+    transform: scale(.97);
+}

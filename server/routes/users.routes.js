@@ -16,6 +16,7 @@ const passwordSchema = z
 
 
 router.get("/getClients", async (req,res) => {
+    //1.0 pull clients to map on coachHome
     const clients = await pool.query(`
         SELECT email, username, id, role, profile_image_url FROM users WHERE role = 'client'
     `)
@@ -26,30 +27,34 @@ router.get("/getClients", async (req,res) => {
     })
 })
 
+//shopuld be patch
 router.post("/addBio", authenticateToken, async (req, res) => {
+    //1.0 Update Bio (should be PATCH ne POST)
     const userData = await pool.query(`
         UPDATE users SET bio = $1 WHERE id = $2 RETURNING bio;
     `,[req.body.bio, req.user.id])
 
 
     res.json({
-        message: "bio route works",
         bio: userData.rows[0].bio
     })
 })
 
+//shopuld be patch
 router.post("/changeUsername" , authenticateToken, async (req, res) => {
+    //1.0 update usernbame
     const username = await pool.query(`
         UPDATE users SET username = $1 WHERE id = $2 RETURNING username
     `, [req.body.username, req.user.id])
 
     res.json({
-        message: "changeusername route works",
         username: username.rows[0].username
     })
 })
 
+//shopuld be patch
 router.post("/saveAccountInfo", authenticateToken, async (req, res) => {
+    //1.0 update user info
     const updateUserInfo = await pool.query(`
         UPDATE users SET
             bio = $1,
@@ -57,9 +62,6 @@ router.post("/saveAccountInfo", authenticateToken, async (req, res) => {
         WHERE id = $3
         RETURNING bio,display_name
     `, [req.body.bio, req.body.displayName, req.user.id])
-
-    console.log(updateUserInfo.rows)
-
 
     res.json({
         bio: updateUserInfo.rows[0].bio,
@@ -69,12 +71,15 @@ router.post("/saveAccountInfo", authenticateToken, async (req, res) => {
 
 router.post("/changePassword", authenticateToken, async (req, res) => {
     try {
+        //1.0 check if psw matches zod crioteria
         const resoult = passwordSchema.parse(req.body.newPassword)
 
+        //2.0 get psw 
         const userPassword = await pool.query(`
             SELECT password_hash FROM users WHERE id = $1
         `, [req.user.id])
 
+        //3.0 error check ce je in db
         if(userPassword.rows.length === 0){
             return res.json({
                 success: false,
@@ -82,8 +87,10 @@ router.post("/changePassword", authenticateToken, async (req, res) => {
             })
         }
 
+        //4.0 verify psw
         const verfyPassword = await bcrypt.compare(req.body.currentPassword, userPassword.rows[0].password_hash)
 
+        //4.1 psw safety check
         if(!verfyPassword){
             return res.json({
                 success: false,
@@ -91,22 +98,25 @@ router.post("/changePassword", authenticateToken, async (req, res) => {
             })
         }
 
+        //5.0 make and hash new psw (confirm psw je checked in frontend)
         const newPasswordHash = await bcrypt.hash(resoult, 10)
 
-        const updatePassword = await pool.query(`
+        //5.1 UPDATE psw in DB
+        await pool.query(`
             UPDATE users SET
                 password_hash = $1
             WHERE id = $2
             RETURNING password_hash
         `, [newPasswordHash, req.user.id])
 
-
+        //6.0
         res.json({
             success: true,
             message: "Password Changed"
         })
         
     } catch (err) {
+        //7.0 error handling
         return res.status(500).json({
             success: false,
             message: err.issues[0].message
@@ -115,8 +125,10 @@ router.post("/changePassword", authenticateToken, async (req, res) => {
 })
 
 router.post("/createProgram", authenticateToken, async (req, res) => {
-    console.log(req.body.program)
 
+    //1.0 not gonna lie to query je chat generatu:: however vem da nardi weeks in workout days based on program weeks in program days
+    //basicaly kot neek loop go genereta new week x amount of time in workout days x amount of times
+    //in usaj workout day ma svoj weekid in usak week id pa svoj program id
     const result = await pool.query(
     `
     WITH new_program AS (
@@ -177,12 +189,13 @@ router.post("/createProgram", authenticateToken, async (req, res) => {
 
     res.json({
         success: true,
-        message: "Proghram route works"
     })
 })
 
 router.post("/addExercise", authenticateToken, async (req, res) => {
 
+    //1.0 ISNERT into EX new Exercise
+    //Should be error check ce je ze u db
     await pool.query(`
         INSERT INTO exercises (
         coach_id,
@@ -204,11 +217,11 @@ router.post("/addExercise", authenticateToken, async (req, res) => {
 
     res.json({
         success: true,
-        message: "exercise rpoute works"
     })
 })
 
 router.post("/addClient", authenticateToken, async (req, res) => {
+    //1.0 self explenatory add client to coach
     await pool.query(`
         INSERT INTO coach_client_rel (
             coach_id,
@@ -217,10 +230,22 @@ router.post("/addClient", authenticateToken, async (req, res) => {
     `,[req.user.id, req.body.client.id])
 
     res.json({
-        message: "route works"
+       success: true
     })
 })
 
+router.patch("/addRole/:role", authenticateToken, async (req, res) => {
+    //1.0 to pride after login ce je role === null
+    await pool.query(`
+        UPDATE users SET role = $1 WHERE id = $2
+    `, [req.params.role, req.user.id])
+
+    res.json({
+        success: true,
+        redirect: "/home",
+        role: req.params.role
+    })
+})
 
 
 module.exports = router

@@ -13,12 +13,16 @@ const userRoutes = require("./routes/users.routes")
 const programsRoutes = require("./routes/programs.routes")
 const clientRoutes = require("./routes/client.routes")
 const workoutRoutes = require("./routes/workouts.routes")
+const progressRoutes = require("./routes/progress.routes")
 
 
 app.use(
     express.json(), 
     cors({
-        origin: "http://localhost:5173",
+        origin: [
+            "http://localhost:5173",
+            "http://localhost:4173"
+        ],
         credentials: true
     }),
     cookieParser()
@@ -37,6 +41,7 @@ app.use("/utils", utilRoutes)
 app.use("/users", userRoutes)
 app.use("/client", clientRoutes)
 app.use("/workouts", workoutRoutes)
+app.use("/progress", progressRoutes)
 
 app.get("/", async (req, res) => {
     try {

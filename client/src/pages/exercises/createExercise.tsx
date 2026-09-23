@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom"
-import { refreshToken } from "./middleware/auth"
+import { refreshToken } from "../../middleware/auth"
 import { useEffect, useState} from "react"
-import type { Exercise } from "../types/client"
-import "./styles/createExercise.css"
+import type { Exercises } from "../../types/client"
+import "./createExercise.css"
 
 
 export default function CreateExercise(){
     const [searchExercise, setSearchExercise] = useState<string>("")
-    const [exercise, setExercise] = useState<Exercise[]>([])
+    const [exercise, setExercise] = useState<Exercises[]>([])
 
     const nav = useNavigate()
 

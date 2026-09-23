@@ -1,0 +1,199 @@
+/* ========================================
+   EXERCISE DAY PAGE
+======================================== */
+
+.exercise-day-page {
+    min-height: 100vh;
+    padding: 15px;
+
+    background: var(--background);
+    color: white;
+}
+
+
+/* ========================================
+   BACK ARROW
+======================================== */
+
+.back-arrow {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.back-arrow h1 {
+    margin: 0;
+
+    color: white;
+    font-size: 1.2rem;
+}
+
+
+/* ========================================
+   TITLE
+======================================== */
+
+.exercise-day-title {
+    margin: 20px 0;
+
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   EXERCISE LIST
+======================================== */
+
+.exercise-day-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+
+/* ========================================
+   EXERCISE CARD
+======================================== */
+
+.exercise-day-card {
+    min-height: 120px;
+    padding: 12px;
+
+    display: grid;
+    grid-template-columns: 105px 1fr 100px;
+    gap: 10px;
+
+    align-items: center;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 14px;
+}
+
+
+/* ========================================
+   EXERCISE NAME + SETS / REPS
+======================================== */
+
+.exercise-day-name {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.exercise-day-name h2 {
+    margin: 0;
+
+    font-size: .95rem;
+    font-weight: 700;
+    line-height: 1.3;
+
+    overflow-wrap: break-word;
+}
+
+.ex-sets-reps {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.ex-sets-reps p {
+    margin: 0;
+    padding: 4px 6px;
+
+    background: rgba(99, 102, 241, .12);
+
+    border: 1px solid rgba(99, 102, 241, .25);
+    border-radius: 6px;
+
+    color: #c7d2fe;
+
+    font-size: .65rem;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.exercise-day-description {
+    height: 80%;
+    padding: 0 10px;
+
+    display: flex;
+    align-items: center;
+
+    border-left: 1px solid rgba(255, 255, 255, .1);
+    border-right: 1px solid rgba(255, 255, 255, .1);
+
+    overflow-y: auto;
+}
+
+.exercise-day-description p {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: .75rem;
+    line-height: 1.4;
+}
+
+
+/* ========================================
+   VIDEO
+======================================== */
+
+.exercise-day-video {
+    width: 100%;
+    height: 95px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    background: #0f172a;
+}
+
+
+/* ========================================
+   REMOVE EXERCISE BUTTON
+======================================== */
+
+.exercise-day-card > button {
+    grid-column: 1 / -1;
+
+    width: 100%;
+    padding: 9px 12px;
+
+    background: rgba(239, 68, 68, .12);
+    color: #fca5a5;
+
+    border: 1px solid rgba(239, 68, 68, .3);
+    border-radius: 8px;
+
+    font-size: .75rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background .2s ease,
+                border-color .2s ease,
+                color .2s ease;
+}

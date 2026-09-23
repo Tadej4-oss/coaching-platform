@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import type { Coach } from "../types/client"
+import type { Coach } from "../../types/client"
 import { useNavigate } from "react-router-dom"
-import "./styles/profle.css"
+import "./profle.css"
 
 
 export default function MyProfile(){
@@ -11,33 +11,39 @@ export default function MyProfile(){
     const nav = useNavigate()
 
     useEffect(() => {
+        //validate suer
         async function getMe() {
             try {
+                //check accesstoken
                 const response = await fetch("http://localhost:5000/utils/me", {
                     credentials: "include"
                 })
 
+                //if accestoken false send to refresh
                 if(response.status === 401){
                     const refresh = await fetch("http://localhost:5000/utils/refresh", {
                         credentials: "include"
                     })
 
+                    //ce je refresh false ni refresh tokena therefore user not validated send to login
                     if(!refresh.ok){
                         console.log("profile /refresh faild", refresh.status)
                         return nav("/login")
                     }
 
+                    //ce je refreshtoken ti issua nou accestoken za revalidajata
                     const retryResponse = await fetch("http://localhost:5000/utils/me", {
                         credentials: "include"
                     })
 
+                    //ce je error ni accestoken ni refreshtoken pol nazaj na login
                     if(!retryResponse.ok){
                         console.log("profile /me faild after /refresh", refresh.status)
                         return nav("/login")
                     }
 
+                    //ce je accestoken in refresh now issuan pol set data
                     const data = await retryResponse.json()
-                    console.log(data)
                     setCoach({
                         id: data.user.id,
                         email: data.user.email,
@@ -49,8 +55,8 @@ export default function MyProfile(){
                     return
                 }
 
+                //ce je accesstoken insta set data
                 const data = await response.json()
-                console.log(data)
                 setCoach({
                     id: data.user.id,
                     email: data.user.email,
@@ -68,6 +74,7 @@ export default function MyProfile(){
         getMe()
     },[])
 
+    //add bio
     async function addBio() {
         try {
             const resposne = await fetch("http://localhost:5000/users/addBio", {
@@ -83,7 +90,6 @@ export default function MyProfile(){
 
             const data = await resposne.json()
             setBio(data.bio)
-            console.log(data)
 
         } catch (err) {
             

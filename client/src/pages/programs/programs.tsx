@@ -1,13 +1,15 @@
-import "./styles/programs.css"
-import { refreshToken } from "./middleware/auth"
+import "./programs.css"
+import { refreshToken } from "../../middleware/auth"
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
-import type { Program, ProgramWeeks } from "../types/client"
+import type { Program, ProgramWeeks, Client } from "../../types/client"
 
 
 export default function Programs(){
     const [programs, setPrograms] = useState<Program[]>([])
     const [programWeeks, setProgramWeeks] = useState<ProgramWeeks[]>([])
+    const [clients, setClients] = useState<Client[]>([])
+    const [programId, setProgramId] = useState<number>(0)
     const nav = useNavigate()
 
     useEffect(() => {
@@ -50,6 +52,7 @@ export default function Programs(){
 
         const data = await response.json()
         setPrograms(data.programs)
+        setClients(data.clients)
         console.log(data)
     }
 
@@ -63,15 +66,27 @@ export default function Programs(){
         console.log(data)
     }
 
+    async function addPorgramToClient(id: number) {
+        const response = await fetch(`http://localhost:5000/programs/addClientProgram/${id}/${programId}`, {
+            method: "POST",
+            credentials: "include",
+        })
+
+        const data = await response.json()
+        console.log(data)
+    }
+
     return(
     <>
     <input style = {{display: "none"}}type="checkbox" id = "program-dropdown" />
+    <input style = {{display: "none"}}type="checkbox" id = "add-program-dropdown" />
     <label className = "back-arrow" onClick={() => {nav("/home")}}> 
         <h1>↩</h1>
     </label>
 
     <div className="programs-div">
         {programs?.map((prog) => (
+            <>
             <label htmlFor="program-dropdown">
                 <div className="programs-card" onClick={() => {pullProgramData(prog.id)}} key = {prog?.id}>
                     <h2>{prog?.name}</h2>
@@ -81,6 +96,10 @@ export default function Programs(){
                     <p>{prog?.difficulty}</p>
                 </div>
             </label>
+            <label htmlFor="add-program-dropdown" onClick={() => {setProgramId(prog.id)}}>
+                <p className = "add-program-btn"> Add Program To Client</p>
+            </label>
+            </>
         ))}
     </div>
 
@@ -97,6 +116,19 @@ export default function Programs(){
             </>
         ))}
     </div> 
+
+    {/* add program dropdownm */}
+    <div className="add-program-to-client-div">
+        <label className = "back-arrow" htmlFor="add-program-dropdown"> 
+            <h1>↩</h1>
+        </label>
+        {clients?.map((client) => (
+            <div className = "add-to-client" key = {client.id}>
+                <p>{client.email}</p>
+                <button onClick={() => {addPorgramToClient(client.id)}}>Add</button>
+            </div>
+        ))}
+    </div>
     </>
     )
 }

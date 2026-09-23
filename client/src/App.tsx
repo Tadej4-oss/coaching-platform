@@ -1,17 +1,21 @@
 import './App.css'
 import { Route, Routes, Navigate} from 'react-router-dom'
-import Register from './components/register'
-import Login from './components/login'
-import Home from './components/home'
-import MyProfile from './components/profile'
-import AccountSettings from './components/accountSettings'
-import ChangePassword from './components/changePassword'
-import CreateExercise from './components/createExercise'
-import AddClient from './components/addClient'
-import AddProgram from './components/addProgram'
-import Programs from './components/programs'
-import Client from './components/messageRoom'
-import ProgramWeek from './components/programWeek'
+import Register from './pages/auth/register'
+import Login from './pages/auth/login'
+import Home from './pages/home/home'
+import MyProfile from './pages/account/profile'
+import AccountSettings from './pages/account/accountSettings'
+import ChangePassword from './pages/account/changePassword'
+import CreateExercise from './pages/exercises/createExercise'
+import AddClient from './pages/clients/addClient'
+import AddProgram from './pages/programs/addProgram'
+import Programs from './pages/programs/programs'
+import Client from './pages/chat/messageRoom'
+import ProgramWeek from './pages/programs/programWeek'
+import IndivDayExercises from './pages/programs/indivDayExercises'
+import ClientWorkouts from './pages/clients/clientWorkouts'
+import Progress from './pages/clients/progress'
+import Role from './pages/role/role'
 
 
 function App() {
@@ -31,6 +35,10 @@ function App() {
       <Route path = "/programs" element = {<Programs />} />
       <Route path = "/programs/workouts/:weekid" element = {<ProgramWeek />} />
       <Route path = "/chatroom/:roomid" element = {<Client />} />
+      <Route path = "/programs/workouts/:weekid/exercises/:dayid" element = {<IndivDayExercises />} />
+      <Route path = "/home/workouts/:weeknumber/:programid" element = {<ClientWorkouts />} />
+      <Route path = "/home/:clientid/progress" element = {<Progress />} />
+      <Route path = "/choseRole" element = {<Role />} />
     </Routes>
     </>
   )

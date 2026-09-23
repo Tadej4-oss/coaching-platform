@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
-import { refreshToken } from "./middleware/auth"
+import { refreshToken } from "../../middleware/auth"
 import { useEffect, useState } from "react"
+import "./addClient.css"
 
 export default function AddClient(){
     const [clients, setClients] = useState<any[]>([])
@@ -68,14 +69,13 @@ export default function AddClient(){
 
     return(<>
     <h1 className="x-button" onClick={() => {nav("/home")}}>✕</h1>
-    <h1>Add Client</h1>
-        <div>
+    <h1 style={{marginTop: "60px", textAlign: "center"}}>Add Client</h1>
+        <div className="add-client">
             {clients?.map((client, i) => (
-                <>
-                <p>{client?.email}</p>
-                <button onClick={() => {addClient(i)}}>Add Client</button>
-                
-                </>
+                <div className="add-client-card">
+                    <p>{client?.email}</p>
+                    <button onClick={() => {addClient(i)}}>Add Client</button>
+                </div>
             ))}
         </div>
     </>)

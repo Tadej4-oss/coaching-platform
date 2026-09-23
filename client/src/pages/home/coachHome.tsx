@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react"
-import "./styles/coachHome.css"
-import type { Client, Coach } from "../types/client"
+import "./coachHome.css"
+import type { Client, Coach } from "../../types/client"
 import { useNavigate } from "react-router-dom"
 
 export default function CoachHome(){
+    //decleare variables
     const [clients, setClients] = useState<Client[]>([])
     const [coach, setCoach] = useState<Coach | null>(null)
     const [programs, setPrograms] = useState<number>(0)
 
-
-
+    //for routes (react-router)
     const nav = useNavigate()
 
+    //pull data on render
     useEffect(() => {
         async function pullData(){
             const response = await fetch("http://localhost:5000/utils/getCoachData", {
@@ -19,7 +20,6 @@ export default function CoachHome(){
             })
 
             const data = await response.json()
-            console.log(data)
             setCoach(data.coach)
             setClients(data.client)
             setPrograms(data.programs.length)
@@ -28,9 +28,9 @@ export default function CoachHome(){
         pullData()
     },[])
 
-
+    //logouts
     async function handleLogout(){
-        const response = await fetch("http://localhost:5000/auth/logout", {
+         await fetch("http://localhost:5000/auth/logout", {
             method: "POST",
             credentials: "include",
             headers: {
@@ -38,11 +38,12 @@ export default function CoachHome(){
             }
         })
 
-        if(response.status === 201){
-            nav("/login")
-        }
+        
+        nav("/login")
+        
     }
 
+    //get room id
     async function getRoomId(id: number){
         const response = await fetch(`http://localhost:5000/chatroom/getRoomid/${id}`, {
             credentials: "include"
@@ -52,7 +53,6 @@ export default function CoachHome(){
         if(data.success){
             nav(`/chatroom/${data.room}`)
         }
-        console.log(data)
     }
     
     return(
@@ -92,18 +92,22 @@ export default function CoachHome(){
             </div>
 
             <div className="your-clients-div">
-                {clients.map((client, index) => {
-                    return(
-                
-                    <div onClick = {() =>{getRoomId(client.id)}} key = {client.id} className="scroll-clients-div">
-                        <p className = "client-profile-card-username" >{client.username || `Client${index}`}</p>
-                        <img className = "client-profile-card-pfp" src={`http://localhost:5000${client.profile_image_url}`} alt = "profile picture"></img>
-                        <p className = "client-profile-card-email">{client.email}</p>
-                        <p className = "client-profile-card-bio">{client.bio ||"No bio yet"}</p>
-                    </div>
-                    
-                    )
-                })}
+                {clients ? 
+                <>
+                    {clients?.map((client, index) => {
+                        return(
+                        <div onClick = {() =>{getRoomId(client.id)}} key = {client.id} className="scroll-clients-div">
+                            <p className = "client-profile-card-username" >{client.username || `Client${index}`}</p>
+                            <img className = "client-profile-card-pfp" src={`http://localhost:5000${client.profile_image_url}`} alt = "profile picture"></img>
+                            <p className = "client-profile-card-email">{client.email}</p>
+                            <p className = "client-profile-card-bio">{client.bio ||"No bio yet"}</p>
+                        </div>
+                        )
+                    })}
+                </> : 
+                <>
+                    <h1>No client, try Adding clients</h1>
+                </>}
             </div>
 
             <div className="quick-action-div">
@@ -120,7 +124,7 @@ export default function CoachHome(){
                     <h1>✕</h1>
                 </label>
 
-                <p className="sidemenu-profile-name">Tadej</p>
+                <p className="sidemenu-profile-name">{coach?.username}</p>
                 <hr className="profile-sidemenu-hr" />
 
                 <div className="menu-items">

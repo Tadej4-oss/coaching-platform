@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import type { Message, Client } from "../types/client"
-import { refreshToken } from "../components/middleware/auth.ts"
-import "./styles/messageRoom.css"
+import type { Message, Client } from "../../types/client"
+import { refreshToken } from "../../middleware/auth"
+import "./messageRoom.css"
 
 export default function Client(){
     const { roomid } = useParams()
@@ -117,8 +117,8 @@ export default function Client(){
         console.log(data)
     }
     async function addProgram(id: number) {
-        const response = await fetch(`http://localhost:5000/programs/addProgram/${client.id}/${id}`, {
-            method: "PATCH",
+        const response = await fetch(`http://localhost:5000/programs/addClientProgram/${client.id}/${id}`, {
+            method: "POST",
             credentials: "include"
         })
 
@@ -130,30 +130,30 @@ export default function Client(){
         <>
         <h1 className="x-button" onClick={() => {nav("/home")}}>✕</h1>
         {user.role === "coach" && (
-    <>
-        <input style={{ display: "none" }} type="checkbox" id="chat-sidemenu"/>
-        <input style={{ display: "none" }} type="checkbox" id="add-program-sidemenu"/>
-
-        <div className="client-profile-card">
-
-            <img className="client-profile-img" src={`http://localhost:5000${client?.profile_image_url}`} alt="Client profile"/>
-
-            <div className="client-profile-info">
-                <h1 className="client-profile-name"> {client?.username || client?.email} </h1>
-                <p className="client-profile-email"> {client?.email} </p>
-                <p className="client-profile-bio"> {client?.bio || "No bio added yet."}</p>
-            </div>
-
-            <div className="client-profile-actions">
-                <label htmlFor="chat-sidemenu" className="message-client-btn">
-                    Message Client
-                </label>
-                <label htmlFor="add-program-sidemenu" className="edit-programs-btn">
-                    Edit Programs 
-                </label>
-            </div>
-
-        </div>
+            <>
+                <input style={{ display: "none" }} type="checkbox" id="chat-sidemenu"/>
+                <input style={{ display: "none" }} type="checkbox" id="add-program-sidemenu"/>
+                
+                <div className="client-profile-card">
+                
+                    <img className="client-profile-img" src={`http://localhost:5000${client?.profile_image_url}`} alt="Client profile"/>
+                
+                    <div className="client-profile-info">
+                        <h1 className="client-profile-name"> {client?.username || client?.email} </h1>
+                        <p className="client-profile-email"> {client?.email} </p>
+                        <p className="client-profile-bio"> {client?.bio || "No bio added yet."}</p>
+                    </div>
+                
+                    <div className="client-profile-actions">
+                        <label htmlFor="chat-sidemenu" className="message-client-btn">
+                            Message Client
+                        </label>
+                        <label htmlFor="add-program-sidemenu" className="edit-programs-btn">
+                            Edit Programs 
+                        </label>
+                    </div>
+                
+                </div>
     </>
 )}
 

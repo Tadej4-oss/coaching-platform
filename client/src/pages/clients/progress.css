@@ -1,0 +1,238 @@
+/* ==================================================
+   ENTER PROGRESS CARD
+================================================== */
+
+.enter-progress-card {
+    width: calc(100% - 30px);
+
+    margin: 14px auto;
+    padding: 18px;
+
+    box-sizing: border-box;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 16px;
+
+    color: white;
+}
+
+
+/* ==================================================
+   WEIGHT / REPS
+================================================== */
+
+.enter-pr-inputs {
+    display: flex;
+    gap: 10px;
+
+    margin-bottom: 16px;
+}
+
+.enter-weight,
+.enter-reps {
+    flex: 1;
+    min-width: 0;
+}
+
+
+/* ==================================================
+   LABELS
+================================================== */
+
+.enter-weight p,
+.enter-reps p,
+.chose-ex-input p {
+    margin: 0 0 7px;
+
+    color: #d1d5db;
+
+    font-size: .85rem;
+    font-weight: 600;
+}
+
+
+/* ==================================================
+   INPUTS
+================================================== */
+
+.enter-weight input,
+.enter-reps input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    background: rgba(255, 255, 255, .03);
+    color: white;
+
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 10px;
+
+    font-size: .95rem;
+}
+
+.enter-weight input::placeholder,
+.enter-reps input::placeholder {
+    color: #6b7280;
+}
+
+.enter-weight input:focus,
+.enter-reps input:focus {
+    outline: none;
+
+    border-color: #6366f1;
+
+    background: rgba(255, 255, 255, .05);
+}
+
+
+/* ==================================================
+   EXERCISE SELECT
+================================================== */
+
+.chose-ex-input {
+    margin-bottom: 16px;
+}
+
+.chose-ex-input select {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    background: rgba(255, 255, 255, .03);
+    color: white;
+
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 10px;
+
+    font-size: .95rem;
+
+    cursor: pointer;
+}
+
+.chose-ex-input select:focus {
+    outline: none;
+
+    border-color: #6366f1;
+}
+
+.chose-ex-input option {
+    background: var(--card);
+    color: white;
+}
+
+
+/* ==================================================
+   ADD PROGRESS BUTTON
+================================================== */
+
+.enter-progress-card > button {
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #6366f1;
+    color: white;
+
+    font-size: .95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.enter-progress-card > button:hover {
+    background: #4f46e5;
+}
+
+.enter-progress-card > button:active {
+    transform: scale(.98);
+}
+
+/* ==================================================
+   CURRENT PROGRESS
+================================================== */
+
+.current-progress-box {
+    width: calc(100% - 30px);
+
+    margin: 14px auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    box-sizing: border-box;
+}
+
+
+/* ==================================================
+   PR CARD
+================================================== */
+
+.indiv-pr {
+    padding: 15px 16px;
+
+    display: flex;
+    align-items: center;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 12px;
+
+    color: white;
+}
+
+
+/* Exercise name */
+
+.indiv-pr p:first-child {
+    flex: 1;
+
+    margin: 0;
+
+    font-size: .95rem;
+    font-weight: 600;
+}
+
+
+/* Weight */
+
+.indiv-pr p:nth-child(2) {
+    margin: 0 6px 0 0;
+
+    color: #a5b4fc;
+
+    font-size: .95rem;
+    font-weight: 700;
+}
+
+.indiv-pr p:nth-child(2)::after {
+    content: " kg";
+}
+
+
+/* Reps */
+
+.indiv-pr p:nth-child(3) {
+    margin: 0;
+
+    color: #9ca3af;
+
+    font-size: .85rem;
+    font-weight: 600;
+}
+
+.indiv-pr p:nth-child(3)::before {
+    content: "× ";
+}

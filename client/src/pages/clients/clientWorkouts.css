@@ -1,0 +1,185 @@
+/* ==================================================
+   WORKOUT DAYS
+================================================== */
+
+.workout-days-card {
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+/* ==================================================
+   DAY CARD
+================================================== */
+
+.current-day-ex {
+    padding: 16px 18px;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.current-day-ex h3 {
+    margin: 0 0 6px;
+
+    color: white;
+
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.current-day-ex p {
+    margin: 0;
+
+    color: #9ca3af;
+
+    font-size: .88rem;
+    line-height: 1.4;
+}
+
+.current-day-ex:hover {
+    border-color: rgba(99, 102, 241, .45);
+
+    transform: translateX(3px);
+}
+
+.current-day-ex:active {
+    background: rgba(99, 102, 241, .08);
+
+    transform: scale(.98);
+}
+
+/* ==================================================
+   EXERCISES PAGE
+================================================== */
+
+.exercises-card {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+
+    top: 100%;
+    right: 0;
+
+    background-color: var(--bg);
+    overflow: scroll;
+
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    opacity: 0;
+
+    transition: top 0.75s ease, opacity 0.75s ease;
+}
+
+#exercises-dropdown:checked ~ .exercises-card{
+    top: 0;
+    opacity: 1;
+}
+
+
+/* ==================================================
+   EXERCISE CARD
+================================================== */
+
+.indiv-exercise {
+    padding: 16px;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 14px;
+
+    color: white;
+}
+
+
+/* Exercise name */
+
+.ex-name {
+    margin: 0 0 8px;
+
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+
+/* Description */
+
+.ex-descriptione {
+    margin: 0 0 14px;
+
+    color: #9ca3af;
+
+    font-size: .88rem;
+    line-height: 1.45;
+}
+
+
+/* ==================================================
+   SETS / REPS
+================================================== */
+
+.indiv-exercise > div {
+    display: flex;
+    gap: 8px;
+
+    margin-bottom: 14px;
+}
+
+.ex-sets,
+.ex-reps {
+    margin: 0;
+    padding: 6px 10px;
+
+    background: rgba(99, 102, 241, .10);
+    color: #a5b4fc;
+
+    border: 1px solid rgba(99, 102, 241, .18);
+    border-radius: 8px;
+
+    font-size: .8rem;
+    font-weight: 600;
+
+    text-transform: capitalize;
+}
+
+
+/* ==================================================
+   VIDEO
+================================================== */
+
+.exercsie-video {
+    display: block;
+
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    object-fit: cover;
+
+    background: #09090b;
+
+    border: 1px solid rgba(255, 255, 255, .06);
+    border-radius: 10px;
+}
+
+
+/* ==================================================
+   BACK BUTTON
+================================================== */
+
+.exercises-card .back-arrow {
+    margin: 0 0 6px;
+}

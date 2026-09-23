@@ -36,7 +36,8 @@ export type programForm = {
     daysPerWeek: number
 }
 
-export type Exercise = {
+export type Exercises = {
+    id: number,
     name: string,
     description: string,
     primaryMuscles: String,
@@ -45,7 +46,9 @@ export type Exercise = {
         url: string
     }[],
     video_url: string,
-    overview: string
+    overview: string,
+    sets: number,
+    reps: number
 }
 
 export type Message = {

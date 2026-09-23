@@ -97,6 +97,7 @@
 }
 
 
+
 /* Add labels without changing TSX */
 
 .programs-card > p:nth-of-type(2)::before {
@@ -212,4 +213,194 @@
     border-color: rgba(99, 102, 241, .5);
 
     transform: translateX(3px);
+}
+
+/* my shit */
+
+.add-program-to-client-div{
+    position: fixed;
+
+    height: 100vh;
+    width: 100%;
+
+    top: 100%;
+    right: 0;
+
+    padding: 20px 15px;
+    box-sizing: border-box;
+
+    background-color: var(--bg);
+
+    transition: .5s ease;
+}
+
+#add-program-dropdown:checked ~ .add-program-to-client-div{
+    top: 0;
+}
+
+.add-program-btn{
+    width: 100%;
+
+    padding: 12px 16px;
+    margin: 10px auto;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #6366f1;
+    color: white;
+
+    font-size: .95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+
+/* ==================================================
+==================================================
+   add to client sidemenun
+==================================================
+================================================== */
+
+
+/* ==================================================
+   ADD PROGRAM TO CLIENT
+================================================== */
+
+.add-program-to-client-div {
+    margin: 14px auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    box-sizing: border-box;
+}
+
+
+/* ==================================================
+   BACK BUTTON
+================================================== */
+
+.add-program-to-client-div .back-arrow {
+    width: 42px;
+    height: 42px;
+
+    margin-bottom: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.add-program-to-client-div .back-arrow h1 {
+    margin: 0;
+
+    color: white;
+
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.add-program-to-client-div .back-arrow:active {
+    transform: scale(.96);
+}
+
+
+/* ==================================================
+   CLIENT CARD
+================================================== */
+
+.add-to-client {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    background: var(--card);
+
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 14px;
+
+    transition: .2s;
+}
+
+.add-to-client:hover {
+    border-color: rgba(99, 102, 241, .35);
+}
+
+
+/* ==================================================
+   CLIENT EMAIL
+================================================== */
+
+.add-to-client p {
+    flex: 1;
+    min-width: 0;
+
+    margin: 0;
+
+    color: #d1d5db;
+
+    font-size: .88rem;
+    font-weight: 500;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ==================================================
+   ADD BUTTON
+================================================== */
+
+.add-to-client button {
+    flex-shrink: 0;
+
+    padding: 9px 18px;
+
+    background: rgba(99, 102, 241, .10);
+    color: #a5b4fc;
+
+    border: 1px solid rgba(99, 102, 241, .25);
+    border-radius: 9px;
+
+    font-size: .8rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.add-to-client button:hover {
+    background: rgba(99, 102, 241, .18);
+
+    border-color: rgba(99, 102, 241, .4);
+
+    color: white;
+}
+
+.add-to-client button:active {
+    transform: scale(.97);
 }

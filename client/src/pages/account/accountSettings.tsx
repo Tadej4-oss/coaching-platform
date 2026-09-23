@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import "./styles/accountSettings.css"
+import "./accountSettings.css"
 import { useNavigate } from "react-router-dom"
 
 export default function AccountSettings(){
