@@ -107,6 +107,7 @@ router.get("/me", authenticateToken, async (req, res) => {
 })
 
 router.get("/refresh", async (req, res) => {
+    console.log("REFRESH COOKIE NAMES:", Object.keys(req.cookies || {}))
     //1.0 get token from payload 
     const refreshToken = req.cookies.refreshToken
 

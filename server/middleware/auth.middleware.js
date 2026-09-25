@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
 function authenticateToken(req, res, next){
+    console.log("AUTH COOKIE NAMES:", Object.keys(req.cookies || {}))
     const accessToken = req.cookies.accessToken
     if(!accessToken){
         //sent to refresh token
