@@ -1,0 +1,8 @@
+{
+  "name": "Coaching Platform",
+  "short_name": "Coaching",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
+}

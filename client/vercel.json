@@ -3,6 +3,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://coaching-platform-ka3n.onrender.com/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
