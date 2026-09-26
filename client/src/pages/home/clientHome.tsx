@@ -6,6 +6,8 @@ import type { Client } from "../../types/client.ts"
 import { API_URL } from "../../config/api"
 
 export default function ClientHome(){
+    const [serverError, setServerError]  = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(true)
     const [personalRecords, setPersonalRecords] = useState<any[]>([])
     const [roomid, setRoomid] = useState<number>(0)
     const [programWeeks, setProgramWeeks] = useState<any[]>([])
@@ -58,40 +60,67 @@ export default function ClientHome(){
     }
 
     async function getMe() {
-        const response = await fetch(`${API_URL}/utils/me`, {
-            credentials: "include"
-        })
-
-        if(response.status === 401){
-            const refresh = await refreshToken()
-
-            if(!refresh.ok){
-                return nav("/login")
-            }
-
-            const retryResponse = await fetch(`${API_URL}/utils/me`, {
+        try {
+            const response = await fetch(`${API_URL}/utils/me`, {
                 credentials: "include"
             })
-        
-            if(!retryResponse.ok){
-                nav("/login")
+
+            if (response.status >= 500) {
+                setServerError(true);
+                return;
             }
 
-        const data = await retryResponse.json()
-        setClient(data.user)
-        return console.log("refreshed token")
-        
+            if(response.status === 401){
+                const refresh = await refreshToken()
 
+                if(!refresh.ok){
+                    return nav("/login")
+                }
+
+                const retryResponse = await fetch(`${API_URL}/utils/me`, {
+                    credentials: "include"
+                })
+            
+                if(!retryResponse.ok){
+                    nav("/login")
+                }
+
+            const data = await retryResponse.json()
+            setClient(data.user)
+            return console.log("refreshed token")
+            
+
+            }
+
+            const data = await response.json()
+            setClient(data.user)
+            console.log("accesstokentoken")
+            
+        } catch (error) {
+            setServerError(true)
         }
-
-        const data = await response.json()
-        setClient(data.user)
-        console.log("accesstokentoken")
+        finally{
+            setLoading(false)
+        }
     }
 
 
+    if (loading) {
+        return <h1>Connecting to server...</h1>;
+    }
 
+    if (serverError) {
+        return (
+            <div className="server-error">
+                <h1>Server unavailable</h1>
+                <p>Unable to connect to the server.</p>
 
+                <button onClick={() => window.location.reload()}>
+                    Try Again
+                </button>
+            </div>
+        );
+    }
 
 
     return(<>

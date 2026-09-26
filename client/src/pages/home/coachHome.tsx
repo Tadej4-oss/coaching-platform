@@ -7,18 +7,36 @@ import { API_URL } from "../../config/api"
 export default function CoachHome(){
     //decleare variables
     const [clients, setClients] = useState<Client[]>([])
+    const [serverError, setServerError]  = useState<boolean>(false)
     const [coach, setCoach] = useState<Coach | null>(null)
     const [programs, setPrograms] = useState<number>(0)
+    const [loading, setLoading] = useState<boolean>(true)
 
     //for routes (react-router)
     const nav = useNavigate()
 
     //pull data on render
     useEffect(() => {
+        try {
+            pullData()
+        } catch (error) {
+            setServerError(true)
+        }
+        finally{
+            setTimeout(() => {
+                setLoading(false)
+            }, 500);
+        }
+
         async function pullData(){
             const response = await fetch(`${API_URL}/utils/getCoachData`, {
                 credentials: "include"
             })
+
+            if (response.status >= 500) {
+                setServerError(true);
+                return;
+            }
 
             const data = await response.json()
             setCoach(data.coach)
@@ -26,7 +44,6 @@ export default function CoachHome(){
             setPrograms(data.programs.length)
         }
         
-        pullData()
     },[])
 
     //logouts
@@ -54,6 +71,23 @@ export default function CoachHome(){
         if(data.success){
             nav(`/chatroom/${data.room}`)
         }
+    }
+
+    if (loading) {
+        return <h1>Connecting to server...</h1>;
+    }
+
+    if (serverError) {
+        return (
+            <div className="server-error">
+                <h1>Server unavailable</h1>
+                <p>Unable to connect to the server.</p>
+
+                <button onClick={() => window.location.reload()}>
+                    Try Again
+                </button>
+            </div>
+        );
     }
     
     return(

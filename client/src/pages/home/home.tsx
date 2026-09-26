@@ -7,7 +7,7 @@ import { refreshToken } from "../../middleware/auth.ts"
 import { API_URL } from "../../config/api"
 
 export default function Home(){
-    const [role, setRole] = useState("client")
+    const [role, setRole] = useState()
     const nav = useNavigate()
 
     useEffect(() => {
