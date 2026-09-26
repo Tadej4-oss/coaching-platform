@@ -27,3 +27,49 @@ body {
     min-height: 100dvh;
     color: var(--text);
 }
+
+.server-error {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 24px;
+    text-align: center;
+
+    background: var(--bg);
+    color: var(--text);
+}
+
+.server-error h1 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.server-error p {
+    max-width: 350px;
+    margin-bottom: 24px;
+
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.server-error button {
+    padding: 12px 24px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: var(--accent);
+    color: var(--text);
+
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.server-error button:hover {
+    background: var(--hover);
+}

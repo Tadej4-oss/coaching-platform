@@ -7,6 +7,8 @@ import { refreshToken } from "../../middleware/auth.ts"
 import { API_URL } from "../../config/api"
 
 export default function Home(){
+    const [serverError, setServerError]  = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(true)
     const [role, setRole] = useState()
     const nav = useNavigate()
 
@@ -16,6 +18,11 @@ export default function Home(){
                 const response = await fetch(`${API_URL}/utils/me`, {
                     credentials: "include"
                 })
+
+                if (response.status >= 500) {
+                    setServerError(true);
+                    return;
+                }
             
                 if(response.status === 401){
                     const refresh = await refreshToken()
@@ -47,6 +54,10 @@ export default function Home(){
             
             } catch (err) {
                 console.error("AUTH ERROR:", err)
+                setServerError(true)
+            }
+            finally{
+                setLoading(false)
             }
         }
         getMe()
@@ -62,6 +73,23 @@ export default function Home(){
         const data = await response.json()
         setRole(data.role)
         console.log(data)
+    }
+
+    if (loading) {
+        return <h1>Connecting to server...</h1>;
+    }
+
+    if (serverError) {
+        return (
+            <div className="server-error">
+                <h1>Server unavailable</h1>
+                <p>Unable to connect to the server.</p>
+
+                <button onClick={() => window.location.reload()}>
+                    Try Again
+                </button>
+            </div>
+        );
     }
 
 
