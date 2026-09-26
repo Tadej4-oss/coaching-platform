@@ -46,7 +46,7 @@ export default function ClientHome(){
     }
 
     async function handleLogout(){
-        const response = await fetch(`://localhost:5000/auth/logout`, {
+        const response = await fetch(`${API_URL}/auth/logout`, {
             method: "POST",
             credentials: "include",
             headers: {
