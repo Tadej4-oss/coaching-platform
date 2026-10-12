@@ -6,6 +6,33 @@ The project was built as a full-stack portfolio application with a focus on auth
 
 ---
 
+## Live Demo
+
+**[Open Live Application](https://coaching-platform-opal.vercel.app)**
+
+
+### Project Notes
+
+Some minor UI/UX refinements could further improve the overall user experience. As this project was developed primarily to demonstrate my full-stack development skills, I have decided to shift my focus toward building new portfolio projects and expanding my technical knowledge.
+
+### Demo Accounts
+
+To explore the application from both the **coach** and **client** perspectives, you can use the following demo accounts.
+
+**Coach Account**
+- **Email:** `coach1@gmail.com`
+- **Password:** `Password123!`
+
+**Client Accounts**
+- **Emails:** `client1@gmail.com`, `client2@gmail.com`, `client3@gmail.com`
+- **Password:** `Password123!` (same for all demo accounts)
+
+These accounts allow you to explore the role-specific interfaces and functionality without creating a new account.
+
+
+
+---
+
 ## Project Status
 
 The core functionality of the application is complete. The project was created as a portfolio project to demonstrate full-stack development with React, TypeScript, Node.js, Express, and PostgreSQL.
