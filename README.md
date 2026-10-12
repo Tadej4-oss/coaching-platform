@@ -10,6 +10,8 @@ The project was built as a full-stack portfolio application with a focus on auth
 
 **[Open Live Application](https://coaching-platform-opal.vercel.app)**
 
+> **Note:** This application was designed primarily for mobile devices. For the best viewing experience on desktop, enable mobile device emulation in your browser's Developer Tools to preview the application at mobile screen dimensions.
+
 
 ### Project Notes
 
