@@ -41,7 +41,7 @@ The codebase could be further refined in terms of cleanliness and overall archit
 
 ### Development Approach
 
-The application's core functionality was written manually as part of a deliberate learning process. This allowed me to work through errors directly and develop a stronger understanding of concepts such as **frontend vs. backend responsibilities, data flow, and handling undefined or unexpected values**.
+The application's code was written manually as part of a deliberate learning process. This allowed me to work through errors directly and develop a stronger understanding of concepts such as **frontend vs. backend responsibilities, data flow, and handling undefined or unexpected values**.
 
 CSS styling and some SQL queries were created with AI assistance to streamline development. I am comfortable working with both CSS and SQL beyond a beginner level, but chose to prioritize my time on the application's **architecture, logic, authentication, and full-stack functionality**.
 
